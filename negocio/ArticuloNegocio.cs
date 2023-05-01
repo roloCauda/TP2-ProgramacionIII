@@ -1,10 +1,11 @@
-﻿using dominio;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Data.SqlClient;
+using dominio;
 
 namespace negocio
 {
@@ -25,9 +26,15 @@ namespace negocio
                     Articulo aux = new Articulo();
                     aux.IdArticulo = (int)datos.Lector["Id"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
-                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];    
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
+
+                    aux.IdMarca = new Marca();
+                    aux.IdMarca.IdMarca = (int)datos.Lector["IdMarca"];
+
+                    aux.IdCategoria = new Categoria();
+                    aux.IdCategoria.IdCategoria = (int)datos.Lector["IdCategoria"];
 
                     lista.Add(aux);
                 }
