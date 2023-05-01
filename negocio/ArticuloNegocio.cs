@@ -26,7 +26,7 @@ namespace negocio
                     Articulo aux = new Articulo();
                     aux.IdArticulo = (int)datos.Lector["Id"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
-                    aux.Nombre = (string)datos.Lector["Nombre"];    
+                    aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
 
@@ -50,5 +50,47 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void agregar(Articulo nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Insert into ARTICULO (Id, Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) values (" + nuevo.IdArticulo + ", '" + nuevo.Codigo + "', '" + nuevo.Nombre + "', '" + nuevo.Descripcion + "', 1, @IdMarca, @IdCategoria, '" + nuevo.Precio + "')");
+                datos.setearParametro("@IdMarca", nuevo.IdMarca.IdMarca);
+                datos.setearParametro("@IdCategoria", nuevo.IdCategoria.IdCategoria);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        /*public void modificar(Articulo art)
+        {
+        
+        }*/
+
+        /*public List<Articulo> filtrar()
+        {
+
+
+        }*/
+
+        /*public void eliminar(int id)
+        {
+
+        }*/
+
+        /*public void eliminarLogico(int id)
+        {
+
+        }*/
     }
 }
