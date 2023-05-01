@@ -22,6 +22,7 @@ namespace winformApp
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             dgvArticulo.DataSource = negocio.listar();
+            dgvArticulo.Columns["IdArticulo"].Visible=false;
         }
     }
 }
