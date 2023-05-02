@@ -18,7 +18,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select Id, Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio from ARTICULOS");
+                datos.setearConsulta("Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio From ARTICULOS A, CATEGORIAS C, MARCAS M Where C.Id = A.IdCategoria And M.Id = A.IdMarca");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -31,10 +31,10 @@ namespace negocio
                     aux.Precio = (decimal)datos.Lector["Precio"];
 
                     aux.IdMarca = new Marca();
-                    aux.IdMarca.IdMarca = (int)datos.Lector["IdMarca"];
+                    aux.IdMarca.Descripcion = (string)datos.Lector["Marca"];
 
                     aux.IdCategoria = new Categoria();
-                    aux.IdCategoria.IdCategoria = (int)datos.Lector["IdCategoria"];
+                    aux.IdCategoria.Descripcion = (string)datos.Lector["Categoria"];
 
                     lista.Add(aux);
                 }
