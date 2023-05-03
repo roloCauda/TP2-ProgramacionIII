@@ -18,7 +18,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select Id, Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio from ARTICULOS");
+                datos.setearConsulta("Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio From ARTICULOS A, CATEGORIAS C, MARCAS M Where C.Id = A.IdCategoria And M.Id = A.IdMarca");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -26,15 +26,15 @@ namespace negocio
                     Articulo aux = new Articulo();
                     aux.IdArticulo = (int)datos.Lector["Id"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
-                    aux.Nombre = (string)datos.Lector["Nombre"];    
+                    aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
 
                     aux.IdMarca = new Marca();
-                    aux.IdMarca.IdMarca = (int)datos.Lector["IdMarca"];
+                    aux.IdMarca.Descripcion = (string)datos.Lector["Marca"];
 
                     aux.IdCategoria = new Categoria();
-                    aux.IdCategoria.IdCategoria = (int)datos.Lector["IdCategoria"];
+                    aux.IdCategoria.Descripcion = (string)datos.Lector["Categoria"];
 
                     lista.Add(aux);
                 }
@@ -50,5 +50,44 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void agregar(Articulo nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                //las comillas dobles definen las cadenas en c#, las comillas simples definen las canedas en SQLServer
+                datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) values ('" + nuevo.Codigo + "', '" + nuevo.Nombre + "', '" + nuevo.Descripcion + "', @IdMarca, @IdCategoria, '" + nuevo.Precio + "')");
+                datos.setearParametro("@IdMarca", nuevo.IdMarca.IdMarca);
+                datos.setearParametro("@IdCategoria", nuevo.IdCategoria.IdCategoria); 
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        /*public void modificar(Articulo art)
+        {
+        
+        }*/
+
+        /*public List<Articulo> filtrar()
+        {
+        }*/
+
+        /*public void eliminar(int id)
+        {
+        }*/
+
+        /*public void eliminarLogico(int id)
+        {
+        }*/
     }
 }

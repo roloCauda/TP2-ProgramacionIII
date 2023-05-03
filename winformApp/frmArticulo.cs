@@ -24,5 +24,11 @@ namespace winformApp
             dgvArticulo.DataSource = negocio.listar();
             dgvArticulo.Columns["IdArticulo"].Visible=false;
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAltaArticulo alta = new frmAltaArticulo();
+            alta.ShowDialog();
+        }
     }
 }

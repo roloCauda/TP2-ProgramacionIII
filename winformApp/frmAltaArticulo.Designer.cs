@@ -35,16 +35,16 @@
             this.lblCategoria = new System.Windows.Forms.Label();
             this.lblImagen = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.pbxArticulo = new System.Windows.Forms.PictureBox();
+            this.textCodigo = new System.Windows.Forms.TextBox();
+            this.textNombre = new System.Windows.Forms.TextBox();
+            this.textDescripcion = new System.Windows.Forms.TextBox();
+            this.textPrecio = new System.Windows.Forms.TextBox();
+            this.cboMarca = new System.Windows.Forms.ComboBox();
+            this.cboCategoria = new System.Windows.Forms.ComboBox();
+            this.pbxArticuloImagen = new System.Windows.Forms.PictureBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloImagen)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCodArt
@@ -110,57 +110,59 @@
             this.lblPrecio.TabIndex = 6;
             this.lblPrecio.Text = "Precio:";
             // 
-            // textBox1
+            // textCodigo
             // 
-            this.textBox1.Location = new System.Drawing.Point(217, 59);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 7;
+            this.textCodigo.Location = new System.Drawing.Point(217, 59);
+            this.textCodigo.Name = "textCodigo";
+            this.textCodigo.Size = new System.Drawing.Size(100, 22);
+            this.textCodigo.TabIndex = 7;
             // 
-            // textBox2
+            // textNombre
             // 
-            this.textBox2.Location = new System.Drawing.Point(217, 97);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 8;
+            this.textNombre.Location = new System.Drawing.Point(217, 97);
+            this.textNombre.Name = "textNombre";
+            this.textNombre.Size = new System.Drawing.Size(100, 22);
+            this.textNombre.TabIndex = 8;
             // 
-            // textBox3
+            // textDescripcion
             // 
-            this.textBox3.Location = new System.Drawing.Point(217, 140);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 22);
-            this.textBox3.TabIndex = 9;
+            this.textDescripcion.Location = new System.Drawing.Point(217, 140);
+            this.textDescripcion.Name = "textDescripcion";
+            this.textDescripcion.Size = new System.Drawing.Size(100, 22);
+            this.textDescripcion.TabIndex = 9;
             // 
-            // textBox4
+            // textPrecio
             // 
-            this.textBox4.Location = new System.Drawing.Point(217, 341);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 22);
-            this.textBox4.TabIndex = 10;
+            this.textPrecio.Location = new System.Drawing.Point(217, 341);
+            this.textPrecio.Name = "textPrecio";
+            this.textPrecio.Size = new System.Drawing.Size(100, 22);
+            this.textPrecio.TabIndex = 10;
             // 
-            // comboBox1
+            // cboMarca
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(217, 180);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 11;
+            this.cboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMarca.FormattingEnabled = true;
+            this.cboMarca.Location = new System.Drawing.Point(217, 180);
+            this.cboMarca.Name = "cboMarca";
+            this.cboMarca.Size = new System.Drawing.Size(121, 24);
+            this.cboMarca.TabIndex = 11;
             // 
-            // comboBox2
+            // cboCategoria
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(217, 216);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 24);
-            this.comboBox2.TabIndex = 12;
+            this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCategoria.FormattingEnabled = true;
+            this.cboCategoria.Location = new System.Drawing.Point(217, 216);
+            this.cboCategoria.Name = "cboCategoria";
+            this.cboCategoria.Size = new System.Drawing.Size(121, 24);
+            this.cboCategoria.TabIndex = 12;
             // 
-            // pbxArticulo
+            // pbxArticuloImagen
             // 
-            this.pbxArticulo.Location = new System.Drawing.Point(217, 261);
-            this.pbxArticulo.Name = "pbxArticulo";
-            this.pbxArticulo.Size = new System.Drawing.Size(121, 63);
-            this.pbxArticulo.TabIndex = 13;
-            this.pbxArticulo.TabStop = false;
+            this.pbxArticuloImagen.Location = new System.Drawing.Point(217, 261);
+            this.pbxArticuloImagen.Name = "pbxArticuloImagen";
+            this.pbxArticuloImagen.Size = new System.Drawing.Size(121, 63);
+            this.pbxArticuloImagen.TabIndex = 13;
+            this.pbxArticuloImagen.TabStop = false;
             // 
             // btnAceptar
             // 
@@ -170,6 +172,7 @@
             this.btnAceptar.TabIndex = 14;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
@@ -179,6 +182,7 @@
             this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // frmAltaArticulo
             // 
@@ -187,13 +191,13 @@
             this.ClientSize = new System.Drawing.Size(466, 431);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.pbxArticulo);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.pbxArticuloImagen);
+            this.Controls.Add(this.cboCategoria);
+            this.Controls.Add(this.cboMarca);
+            this.Controls.Add(this.textPrecio);
+            this.Controls.Add(this.textDescripcion);
+            this.Controls.Add(this.textNombre);
+            this.Controls.Add(this.textCodigo);
             this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.lblImagen);
             this.Controls.Add(this.lblCategoria);
@@ -203,7 +207,8 @@
             this.Controls.Add(this.lblCodArt);
             this.Name = "frmAltaArticulo";
             this.Text = "frmAltaArticulo";
-            ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).EndInit();
+            this.Load += new System.EventHandler(this.frmAltaArticulo_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,13 +223,13 @@
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.Label lblImagen;
         private System.Windows.Forms.Label lblPrecio;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.PictureBox pbxArticulo;
+        private System.Windows.Forms.TextBox textCodigo;
+        private System.Windows.Forms.TextBox textNombre;
+        private System.Windows.Forms.TextBox textDescripcion;
+        private System.Windows.Forms.TextBox textPrecio;
+        private System.Windows.Forms.ComboBox cboMarca;
+        private System.Windows.Forms.ComboBox cboCategoria;
+        private System.Windows.Forms.PictureBox pbxArticuloImagen;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
     }
