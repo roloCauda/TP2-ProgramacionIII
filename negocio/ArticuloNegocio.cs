@@ -61,6 +61,7 @@ namespace negocio
                 datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) values ('" + nuevo.Codigo + "', '" + nuevo.Nombre + "', '" + nuevo.Descripcion + "', @IdMarca, @IdCategoria, '" + nuevo.Precio + "')");
                 datos.setearParametro("@IdMarca", nuevo.IdMarca.IdMarca);
                 datos.setearParametro("@IdCategoria", nuevo.IdCategoria.IdCategoria); 
+
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -80,14 +81,17 @@ namespace negocio
 
         /*public List<Articulo> filtrar()
         {
+
         }*/
 
         /*public void eliminar(int id)
         {
+
         }*/
 
         /*public void eliminarLogico(int id)
         {
+
         }*/
     }
 }

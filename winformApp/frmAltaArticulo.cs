@@ -18,27 +18,38 @@ namespace winformApp
         {
             InitializeComponent();
         }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
+    
+        private void frmAltaArticulo_Load_1(object sender, EventArgs e)
         {
-            Close();
+            MarcaNegocio marcaNegocio = new MarcaNegocio();
+            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+            try
+            {
+                //cargo los desplegables
+                cboMarca.DataSource = marcaNegocio.listar();
+                cboCategoria.DataSource = categoriaNegocio.listar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Articulo nuevo= new Articulo(); //creo e instancio al Articulo
+            Articulo nuevo = new Articulo(); //creo e instancio al Articulo
             ArticuloNegocio negocio = new ArticuloNegocio(); //para conectar a la BD
-            
+
             try
             {
-                nuevo.Codigo = textCodigo.Text; //si fuese de un tipo distinto a string, deberia castearlo, ej. int.Parse
-                nuevo.Nombre = textNombre.Text;
-                nuevo.Descripcion = textDescripcion.Text;
+                nuevo.Codigo = txtCodigo.Text; //si fuese de un tipo distinto a string, deberia castearlo, ej. int.Parse
+                nuevo.Nombre = txtNombre.Text;
+                nuevo.Descripcion = txtDescripcion.Text;
                 nuevo.IdMarca = (Marca)cboMarca.SelectedItem; //trae el item seleccionado, pero hay que decirle de que tipo es
                 nuevo.IdCategoria = (Categoria)cboCategoria.SelectedItem;
 
                 //imagen
-                nuevo.Precio = decimal.Parse(textPrecio.Text);
+                nuevo.Precio = decimal.Parse(txtPrecio.Text);
 
                 negocio.agregar(nuevo);
                 MessageBox.Show("Agregado exitosamente");
@@ -51,21 +62,9 @@ namespace winformApp
             }
         }
 
-        private void frmAltaArticulo_Load(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-            MarcaNegocio marcaNegocio= new MarcaNegocio();
-            CategoriaNegocio categoriaNegocio= new CategoriaNegocio();
-            try
-            {
-                //cargo los desplegables
-                cboMarca.DataSource = marcaNegocio.listar();
-                cboCategoria.DataSource = categoriaNegocio.listar();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
+            Close();
         }
     }
 }
