@@ -73,5 +73,22 @@ namespace winformApp
         }
 
         
+
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbxArticuloAlta.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+                pbxArticuloAlta.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
+        }
+
+        private void txtURLImagen_Leave(object sender, EventArgs e)
+        {
+            cargarImagen(txtURLImagen.Text);
+        }
     }
 }
