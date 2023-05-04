@@ -14,6 +14,8 @@ namespace winformApp
 {
     public partial class frmAltaArticulo : Form
     {
+        
+
         public frmAltaArticulo()
         {
             InitializeComponent();
@@ -37,27 +39,30 @@ namespace winformApp
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Articulo nuevo = new Articulo(); //creo e instancio al Articulo
+            Articulo nuevoArt = new Articulo(); //creo e instancio al Articulo
+            Imagen nuevoIMG = new Imagen(); //creo e instancio a la Imagen
             ArticuloNegocio negocio = new ArticuloNegocio(); //para conectar a la BD
+            ImagenNegocio negocioIMG = new ImagenNegocio(); //para conectar a la BD
 
             try
             {
-                nuevo.Codigo = txtCodigo.Text; //si fuese de un tipo distinto a string, deberia castearlo, ej. int.Parse
-                nuevo.Nombre = txtNombre.Text;
-                nuevo.Descripcion = txtDescripcion.Text;
-                nuevo.IdMarca = (Marca)cboMarca.SelectedItem; //trae el item seleccionado, pero hay que decirle de que tipo es
-                nuevo.IdCategoria = (Categoria)cboCategoria.SelectedItem;
+                nuevoArt.Codigo = txtCodigo.Text; //si fuese de un tipo distinto a string, deberia castearlo, ej. int.Parse
+                nuevoArt.Nombre = txtNombre.Text;
+                nuevoArt.Descripcion = txtDescripcion.Text;
+                nuevoArt.IdMarca = (Marca)cboMarca.SelectedItem; //trae el item seleccionado, pero hay que decirle de que tipo es
+                nuevoArt.IdCategoria = (Categoria)cboCategoria.SelectedItem;
 
-                //imagen
-                nuevo.Precio = decimal.Parse(txtPrecio.Text);
+                nuevoIMG.ImagenURL = txtURLImagen.Text;
 
-                negocio.agregar(nuevo);
+                nuevoArt.Precio = decimal.Parse(txtPrecio.Text);
+
+                negocio.agregar(nuevoArt);
+                negocioIMG.agregar(nuevoIMG);
                 MessageBox.Show("Agregado exitosamente");
                 Close();
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
             }
         }
@@ -66,5 +71,7 @@ namespace winformApp
         {
             Close();
         }
+
+        
     }
 }

@@ -9,6 +9,7 @@ namespace negocio
 {
     public class ImagenNegocio
     {
+        
         public List<Imagen> listar()
         {
             List<Imagen> lista = new List<Imagen>();
@@ -29,6 +30,29 @@ namespace negocio
                 }
 
                 return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void agregar(Imagen nuevoIMG)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                //las comillas dobles definen las cadenas en c#, las comillas simples definen las canedas en SQLServer
+                //ver como pasarle el ID de articulo, es Identity
+                datos.setearConsulta("Insert into IMAGENES (IdArticulo,ImagenURL) values ('" + nuevoIMG.ImagenURL + "')");
+
+                datos.ejecutarAccion();
+
             }
             catch (Exception ex)
             {
