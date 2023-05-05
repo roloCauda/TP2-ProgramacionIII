@@ -52,6 +52,7 @@ namespace winformApp
                 nuevoArt.IdMarca = (Marca)cboMarca.SelectedItem; //trae el item seleccionado, pero hay que decirle de que tipo es
                 nuevoArt.IdCategoria = (Categoria)cboCategoria.SelectedItem;
 
+                nuevoIMG.IdImagen = 0;
                 nuevoIMG.ImagenURL = txtURLImagen.Text;
 
                 nuevoArt.Precio = decimal.Parse(txtPrecio.Text);

@@ -49,7 +49,9 @@ namespace negocio
             {
                 //las comillas dobles definen las cadenas en c#, las comillas simples definen las canedas en SQLServer
                 //ver como pasarle el ID de articulo, es Identity
-                datos.setearConsulta("Insert into IMAGENES (ImagenURL) values ('" + nuevoIMG.ImagenURL + "')");
+                datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@IdArticulo, @ImagenURL)");
+                datos.setearParametro("@IdArticulo", nuevoIMG.IdArticulo);
+                datos.setearParametro("@ImagenURL", nuevoIMG.ImagenURL);
 
                 datos.ejecutarAccion();
 
