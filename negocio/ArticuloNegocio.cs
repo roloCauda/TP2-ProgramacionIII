@@ -18,7 +18,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, I.ImagenUrl From ARTICULOS A, CATEGORIAS C, MARCAS M, IMAGENES I Where C.Id = A.IdCategoria And M.Id = A.IdMarca and I.IdArticulo = A.Id");
+                datos.setearConsulta("Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, I.ImagenUrl, A.IdMarca, A.IdCategoria From ARTICULOS A, CATEGORIAS C, MARCAS M, IMAGENES I Where C.Id = A.IdCategoria And M.Id = A.IdMarca and I.IdArticulo = A.Id");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -42,10 +42,12 @@ namespace negocio
 
                     aux.IdMarca = new Marca();
                     if (!(datos.Lector["Marca"] is DBNull))
+                        aux.IdMarca.IdMarca = (int)datos.Lector["IdMarca"];
                         aux.IdMarca.Descripcion = (string)datos.Lector["Marca"];
 
                     aux.IdCategoria = new Categoria();
                     if (!(datos.Lector["Categoria"] is DBNull))
+                        aux.IdCategoria.IdCategoria = (int)datos.Lector["IdCategoria"];
                         aux.IdCategoria.Descripcion = (string)datos.Lector["Categoria"];
 
                     aux.ImagenURL = new Imagen();
@@ -94,6 +96,33 @@ namespace negocio
             }
             finally
             {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void modificar(Articulo nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @desc, IdMarca = @idMarca, IdCategoria = @idCateg, Precio = @precio Where Id = @id");
+                datos.setearParametro("@codigo", nuevo.Codigo);
+                datos.setearParametro("@nombre", nuevo.Nombre);
+                datos.setearParametro("@desc", nuevo.Descripcion);
+                datos.setearParametro("@idMarca", nuevo.IdMarca.IdMarca);
+                datos.setearParametro("@idCateg", nuevo.IdCategoria.IdCategoria);
+                datos.setearParametro("@Precio", nuevo.Precio);
+                datos.setearParametro("@id", nuevo.IdArticulo);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally 
+            { 
                 datos.cerrarConexion();
             }
         }
@@ -198,11 +227,7 @@ namespace negocio
                 throw ex;
             }
         }
-
-        /*public void modificar(Articulo art)
-        {
         
-        }*/
 
         /*public void eliminar(int id)
         {
