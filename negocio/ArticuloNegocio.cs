@@ -216,14 +216,21 @@ namespace negocio
         }
 
 
-        /*public void eliminar(int id)
+        public void eliminar(int id)
         {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("delete from ARTICULOS where id=@id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
 
-        }*/
+            }
+            catch (Exception ex)
+            {
 
-        /*public void eliminarLogico(int id)
-        {
-
-        }*/
+                throw;
+            }
+        }
     }
 }

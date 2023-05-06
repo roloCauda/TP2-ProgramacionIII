@@ -165,5 +165,25 @@ namespace winformApp
         {
             cargar();
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            Articulo seleccionado;
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("Estás seguro?", "Eliminar Artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(respuesta == DialogResult.Yes) {
+                    seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+                    negocio.eliminar(seleccionado.IdArticulo);
+                    cargar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
+        }
     }
 }
