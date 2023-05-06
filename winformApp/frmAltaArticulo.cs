@@ -117,8 +117,6 @@ namespace winformApp
             Close();
         }
 
-        
-
         private void cargarImagen(string imagen)
         {
             try

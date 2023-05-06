@@ -26,6 +26,7 @@ namespace winformApp
             try
             {
                 cargar();
+                //le agrego con ADD las opciones que quiero que aparezcan
                 cboCampo.Items.Add("Codigo");
                 cboCampo.Items.Add("Nombre");
                 cboCampo.Items.Add("Descripcion");
@@ -44,7 +45,6 @@ namespace winformApp
             frmAltaArticulo alta = new frmAltaArticulo();
             alta.ShowDialog();
 
-            //no me esta cargando completa la lista con el nuevo articulo
             cargar();
         }
 
@@ -83,7 +83,7 @@ namespace winformApp
             dgvArticulo.Columns["ImagenURL"].Visible = false;
         }
 
-        private void dgvPokemons_SelectionChanged(object sender, EventArgs e)
+        private void dgvArticulo_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvArticulo.CurrentRow != null)
             {
@@ -92,8 +92,7 @@ namespace winformApp
             }
         }
 
-
-        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        private void txtFiltro_TextChanged(object sender, EventArgs e) //filtro rapido busca en la grilla que ya esta cargada
         {
             List<Articulo> listaFiltrada;
             string filtro = txtFiltro.Text;
@@ -103,7 +102,7 @@ namespace winformApp
                 //esta expresion lamda, actua como un for each, en cada vuelta guarda un objeto en x y lo evalua segun el filtro dado
                 //toUpper es para que compare todo por igual
                 //Contains(metodo de las cadenas) es para que busque que contenga el filtro
-                listaFiltrada = ListaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()));
+                listaFiltrada = ListaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper())); //filtra por nombre
             }
             else
             {
@@ -136,15 +135,15 @@ namespace winformApp
             }
         }
 
-        private void btnFiltro_Click(object sender, EventArgs e)
+        private void btnFiltro_Click(object sender, EventArgs e) //este filtro va a la BD y busca con el select
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             
             try
             {
                 string campo = cboCampo.SelectedItem.ToString();
-                string criterio = cboCriterio.SelectedItem.ToString();
-                string filtro = txtFiltroAvanzado.Text;
+                string criterio = cboCriterio.SelectedItem.ToString();  
+                string filtro = txtFiltroAV.Text;
                 dgvArticulo.DataSource = negocio.filtrar(campo, criterio, filtro);
             }
             catch (Exception ex)
@@ -162,5 +161,9 @@ namespace winformApp
             modificar.ShowDialog();
         }
 
+        private void btnLimpiarFiltro_Click(object sender, EventArgs e)
+        {
+            cargar();
+        }
     }
 }

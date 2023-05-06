@@ -134,39 +134,23 @@ namespace negocio
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
-            
+
             try
             {
                 string consulta = "Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, I.ImagenUrl From ARTICULOS A, CATEGORIAS C, MARCAS M, IMAGENES I Where C.Id = A.IdCategoria And M.Id = A.IdMarca and I.IdArticulo = A.Id AND ";
-                
-                if(campo == "Precio")
+
+                if (campo == "Precio")
                 {
                     switch (criterio)
                     {
                         case "Mayor a":
-                            consulta += "Precio >" + filtro;
+                            consulta += campo + " > " + filtro;
                             break;
                         case "Menor a":
-                            consulta += "Precio <" + filtro;
+                            consulta += campo + " < " + filtro;
                             break;
                         case "Igual a":
-                            consulta += "Precio =" + filtro;
-                            break;
-                    }
-
-                }
-                else if (campo == "Codigo")
-                {
-                    switch (criterio)
-                    {
-                        case "Comienza con":
-                            consulta += "Codigo like '" + filtro + "%' ";
-                            break;
-                        case "Termina con":
-                            consulta += "Codigo like '%" + filtro + "'";
-                            break;
-                        case "Contiene":
-                            consulta += "Codigo like '%" + filtro + "%'";
+                            consulta += campo + " = " + filtro;
                             break;
                     }
                 }
@@ -175,20 +159,20 @@ namespace negocio
                     switch (criterio)
                     {
                         case "Comienza con":
-                            consulta += "A.Descripcion like '" + filtro + "%' ";
+                            consulta += "A." + campo + " like '" + filtro + "%' ";
                             break;
                         case "Termina con":
-                            consulta += "A.Descripcion like '%" + filtro + "'";
+                            consulta += "A." + campo + " like '%" + filtro + "'";
                             break;
                         case "Contiene":
-                            consulta += "A.Descripcion like '%" + filtro + "%'";
+                            consulta += "A." + campo + " like '%" + filtro + "%' ";
                             break;
                     }
                 }
-                
+
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
-
+                
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
@@ -213,8 +197,8 @@ namespace negocio
                         aux.IdCategoria.Descripcion = (string)datos.Lector["Categoria"];
 
                     aux.ImagenURL = new Imagen();
-                    //validar que no se null
-                    aux.ImagenURL.ImagenURL = (string)datos.Lector["ImagenUrl"];
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                        aux.ImagenURL.ImagenURL = (string)datos.Lector["ImagenUrl"];
 
                     if (!(datos.Lector["Precio"] is DBNull))
                         aux.Precio = (decimal)datos.Lector["Precio"];
@@ -230,7 +214,7 @@ namespace negocio
                 throw ex;
             }
         }
-        
+
 
         /*public void eliminar(int id)
         {
