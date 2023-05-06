@@ -92,7 +92,6 @@ namespace winformApp
             }
         }
 
-        
 
         private void txtFiltro_TextChanged(object sender, EventArgs e)
         {

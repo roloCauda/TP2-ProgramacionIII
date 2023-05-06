@@ -72,24 +72,27 @@ namespace negocio
             }
         }
 
-        public void agregar(Articulo nuevo)
+        public int agregar(Articulo nuevo)
         {
-            AccesoDatos datos = new AccesoDatos();
+            AccesoDatos datos = new AccesoDatos();      
+            int nuevoId = 0;
 
             try
             {
                 //las comillas dobles definen las cadenas en c#, las comillas simples definen las canedas en SQLServer
-                datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) values (@Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @Precio)");
+                datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) OUTPUT Inserted.ID values (@Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @Precio)");
                 datos.setearParametro("@Codigo", nuevo.Codigo);
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@IdMarca", nuevo.IdMarca.IdMarca);
                 datos.setearParametro("@IdCategoria", nuevo.IdCategoria.IdCategoria);
                 datos.setearParametro("@Precio", nuevo.Precio);
-                
-                datos.ejecutarAccion();
-                            
+
+                nuevoId = (int)datos.ejecutarEscalar();
+
+                return nuevoId;
             }
+
             catch (Exception ex)
             {
                 throw ex;

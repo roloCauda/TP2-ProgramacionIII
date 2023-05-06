@@ -76,6 +76,8 @@ namespace winformApp
                 if(articulo == null)
                 {
                     articulo = new Articulo();
+                    Marca nuevaMarca = new Marca();
+                    Categoria nuevaCategoria = new Categoria();
                 }
                 articulo.Codigo = txtCodigo.Text; //si fuese de un tipo distinto a string, deberia castearlo, ej. int.Parse
                 articulo.Nombre = txtNombre.Text;
@@ -83,18 +85,21 @@ namespace winformApp
                 articulo.IdMarca = (Marca)cboMarca.SelectedItem; //trae el item seleccionado, pero hay que decirle de que tipo es
                 articulo.IdCategoria = (Categoria)cboCategoria.SelectedItem;
                 articulo.Precio = decimal.Parse(txtPrecio.Text);
-
-                nuevoIMG.IdImagen = 0;
                 nuevoIMG.ImagenURL = txtURLImagen.Text;
 
                 if(articulo.IdArticulo != 0)
                 {
+                    //nuevoIMG.IdImagen = 0; si se modifica la imagen tengo que pasarle el ID de la imagen
+                    //articulo.IdArticulo =
                     negocio.modificar(articulo);
                     MessageBox.Show("Modificado exitosamente");
                 }
                 else
                 {
-                    negocio.agregar(articulo);
+                    int nuevoId = negocio.agregar(articulo);
+
+                    nuevoIMG.IdArticulo = nuevoId;
+                    nuevoIMG.ImagenURL = txtURLImagen.Text;
                     negocioIMG.agregar(nuevoIMG);
                     MessageBox.Show("Agregado exitosamente");
                 }
