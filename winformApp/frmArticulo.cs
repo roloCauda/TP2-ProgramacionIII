@@ -49,27 +49,7 @@ namespace winformApp
             cargar();
         }
 
-        private void cargarImagen(List<Imagen> listaImagenes, int indiceImagen)
-        {
-            if (listaImagenes.Count > 0)
-            {
-                if (indiceImagen < 0)
-                {
-                    indiceImagen = listaImagenes.Count - 1;
-                }
-                else if (indiceImagen >= listaImagenes.Count)
-                {
-                    indiceImagen = 0;
-                }
-
-                string imagenURL = listaImagenes[indiceImagen].ImagenURL;
-                pbxArticulo.Load(imagenURL);
-            }
-            else
-            {
-                pbxArticulo.Image = null;
-            }
-        }
+        
 
         public void cargar()
         {
@@ -203,11 +183,16 @@ namespace winformApp
         private void btnFiltro_Click(object sender, EventArgs e) //este filtro va a la BD y busca con el select
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-            
+
             try
             {
+                if (validarFiltro())
+                {
+                    return;
+                }
+
                 string campo = cboCampo.SelectedItem.ToString();
-                string criterio = cboCriterio.SelectedItem.ToString();  
+                string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = txtFiltroAV.Text;
                 dgvArticulo.DataSource = negocio.filtrar(campo, criterio, filtro);
             }
@@ -230,7 +215,6 @@ namespace winformApp
         private void btnLimpiarFiltro_Click(object sender, EventArgs e)
         {
             txtFiltroAV.Text = "";
-            
             cargar();
         }
 
@@ -253,6 +237,45 @@ namespace winformApp
                 MessageBox.Show(ex.ToString());
                 throw;
             }
+        }
+
+        private bool validarFiltro()
+        {
+            if (cboCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor seleccione el campo para filtrar");
+                return true;
+            }
+            if (cboCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor seleccione el criterio para filtrar");
+                return true;
+            }
+            if (cboCampo.SelectedItem.ToString() == "Precio")
+            {
+                if (string.IsNullOrEmpty(txtFiltroAV.Text))
+                {
+                    MessageBox.Show("Debes cargar el filtro para campo numérico");
+                    return true;
+                }
+
+                if (!(soloNumeros(txtFiltroAV.Text)))
+                {
+                    MessageBox.Show("Solo números para el campo Filtrar");
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool soloNumeros(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter)))
+                { return false; }
+            }
+            return true;
         }
 
     }
