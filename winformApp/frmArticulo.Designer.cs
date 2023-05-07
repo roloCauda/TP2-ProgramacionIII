@@ -73,18 +73,18 @@
             // 
             // pbxArticulo
             // 
-            this.pbxArticulo.Location = new System.Drawing.Point(30, 31);
+            this.pbxArticulo.Location = new System.Drawing.Point(45, 31);
             this.pbxArticulo.Name = "pbxArticulo";
-            this.pbxArticulo.Size = new System.Drawing.Size(316, 283);
+            this.pbxArticulo.Size = new System.Drawing.Size(325, 283);
             this.pbxArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxArticulo.TabIndex = 1;
             this.pbxArticulo.TabStop = false;
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(52, 8);
+            this.btnAgregar.Location = new System.Drawing.Point(75, 8);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 42);
+            this.btnAgregar.Size = new System.Drawing.Size(228, 42);
             this.btnAgregar.TabIndex = 2;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -92,9 +92,9 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(154, 8);
+            this.btnModificar.Location = new System.Drawing.Point(324, 8);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(84, 42);
+            this.btnModificar.Size = new System.Drawing.Size(230, 42);
             this.btnModificar.TabIndex = 3;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
@@ -102,9 +102,9 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(266, 8);
+            this.btnEliminar.Location = new System.Drawing.Point(571, 8);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 42);
+            this.btnEliminar.Size = new System.Drawing.Size(230, 42);
             this.btnEliminar.TabIndex = 4;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -129,7 +129,7 @@
             // btnAnterior
             // 
             this.btnAnterior.ForeColor = System.Drawing.Color.Black;
-            this.btnAnterior.Location = new System.Drawing.Point(41, 341);
+            this.btnAnterior.Location = new System.Drawing.Point(63, 345);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(142, 26);
             this.btnAnterior.TabIndex = 16;
@@ -140,7 +140,7 @@
             // btnPosterior
             // 
             this.btnPosterior.ForeColor = System.Drawing.Color.Black;
-            this.btnPosterior.Location = new System.Drawing.Point(189, 341);
+            this.btnPosterior.Location = new System.Drawing.Point(211, 345);
             this.btnPosterior.Name = "btnPosterior";
             this.btnPosterior.Size = new System.Drawing.Size(142, 26);
             this.btnPosterior.TabIndex = 17;
@@ -187,7 +187,7 @@
             // 
             // btnLimpiarFiltro
             // 
-            this.btnLimpiarFiltro.Location = new System.Drawing.Point(985, 29);
+            this.btnLimpiarFiltro.Location = new System.Drawing.Point(994, 28);
             this.btnLimpiarFiltro.Name = "btnLimpiarFiltro";
             this.btnLimpiarFiltro.Size = new System.Drawing.Size(143, 38);
             this.btnLimpiarFiltro.TabIndex = 15;
@@ -206,7 +206,7 @@
             // 
             // btnFiltro
             // 
-            this.btnFiltro.Location = new System.Drawing.Point(862, 29);
+            this.btnFiltro.Location = new System.Drawing.Point(870, 28);
             this.btnFiltro.Name = "btnFiltro";
             this.btnFiltro.Size = new System.Drawing.Size(97, 38);
             this.btnFiltro.TabIndex = 7;
@@ -247,9 +247,9 @@
             this.panel2.Controls.Add(this.btnAnterior);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.ForeColor = System.Drawing.Color.Cornsilk;
-            this.panel2.Location = new System.Drawing.Point(907, 0);
+            this.panel2.Location = new System.Drawing.Point(870, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(371, 414);
+            this.panel2.Size = new System.Drawing.Size(408, 414);
             this.panel2.TabIndex = 19;
             // 
             // panel3
@@ -261,7 +261,7 @@
             this.panel3.ForeColor = System.Drawing.Color.Teal;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(907, 79);
+            this.panel3.Size = new System.Drawing.Size(870, 79);
             this.panel3.TabIndex = 20;
             // 
             // panel4
@@ -272,7 +272,7 @@
             this.panel4.Controls.Add(this.btnModificar);
             this.panel4.Location = new System.Drawing.Point(0, 358);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(907, 56);
+            this.panel4.Size = new System.Drawing.Size(870, 56);
             this.panel4.TabIndex = 21;
             // 
             // frmArticulo
