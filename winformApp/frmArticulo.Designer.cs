@@ -112,9 +112,9 @@
             // 
             // lblFiltro
             // 
-            this.lblFiltro.Location = new System.Drawing.Point(205, 34);
+            this.lblFiltro.Location = new System.Drawing.Point(207, 34);
             this.lblFiltro.Name = "lblFiltro";
-            this.lblFiltro.Size = new System.Drawing.Size(81, 16);
+            this.lblFiltro.Size = new System.Drawing.Size(96, 22);
             this.lblFiltro.TabIndex = 5;
             this.lblFiltro.Text = "Filtro rápido:";
             // 

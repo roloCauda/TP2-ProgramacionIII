@@ -91,6 +91,8 @@ namespace winformApp
                 {
                     //nuevoIMG.IdImagen = 0; si se modifica la imagen tengo que pasarle el ID de la imagen
                     //articulo.IdArticulo =
+                    nuevoIMG.ImagenURL = txtURLImagen.Text;
+                    negocioIMG.modificar(nuevoIMG, articulo);
                     negocio.modificar(articulo);
                     MessageBox.Show("Modificado exitosamente");
                 }

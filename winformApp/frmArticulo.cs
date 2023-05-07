@@ -80,7 +80,7 @@ namespace winformApp
                 ListaArticulos = negocio.listar();
                 dgvArticulo.DataSource = ListaArticulos;
                 ocultarColumnas();
-                /*rgarImagen(ListaArticulos[0].ListaImagenes, 0);*/
+                /*cargarImagen(ListaArticulos[0].ListaImagenes, 0);*/
             }
             catch (Exception ex)
             {
@@ -224,6 +224,7 @@ namespace winformApp
             seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
             frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
             modificar.ShowDialog();
+            cargar();
         }
 
         private void btnLimpiarFiltro_Click(object sender, EventArgs e)
