@@ -211,13 +211,20 @@ namespace winformApp
             {
                 if (ListaStringImagenes.Count()>0)
                 {
-                    ListaStringImagenesBorrar.Add(ListaStringImagenes[0]);
+                    ListaStringImagenesBorrar.Add(ListaStringImagenes[IndiceImagen]);
 
-                    ListaStringImagenes.Remove(ListaStringImagenes[0]);
+                    ListaStringImagenes.Remove(ListaStringImagenes[IndiceImagen]);
 
                     IndiceImagen--;
 
-                    cargarImagen(ListaStringImagenes[0]);
+                    if (IndiceImagen > -1)
+                    {
+                        cargarImagen(ListaStringImagenes[0]);
+                    }
+                    else
+                    {
+                        pbxArticuloAlta.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+                    }
                 }
 
             }
