@@ -105,7 +105,17 @@ namespace winformApp
                 Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
                 int IdArt = seleccionado.IdArticulo;
                 List<Imagen> listaImagenes = negocio.listar(IdArt);
-                pbxArticulo.ImageLocation = listaImagenes[0].ImagenURL;
+
+                try
+                {
+                    pbxArticulo.ImageLocation = listaImagenes[0].ImagenURL;
+                }
+                catch (Exception)
+                {
+
+                    pbxArticulo.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+                }
+                
                 
             }
         }
@@ -218,6 +228,8 @@ namespace winformApp
 
         private void btnLimpiarFiltro_Click(object sender, EventArgs e)
         {
+            txtFiltroAV.Text = "";
+            
             cargar();
         }
 
