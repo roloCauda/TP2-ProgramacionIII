@@ -55,6 +55,7 @@ namespace negocio
                 for(int x=0; x<tamLista; x++)
                 {
                     datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@IdArticulo, @ImagenURL)");
+                    datos.limpiarParametros(datos);
                     datos.setearParametro("@IdArticulo", ID);
                     datos.setearParametro("@ImagenURL", lista[x]);
 
