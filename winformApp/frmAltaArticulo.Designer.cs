@@ -46,12 +46,12 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtURLImagen = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAltaPosterior = new System.Windows.Forms.Button();
             this.btnAltaAnterior = new System.Windows.Forms.Button();
-            this.txtListaImagenes = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAgregarImagenURL = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
+            this.txtListaImagenes = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloAlta)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -218,6 +218,15 @@
             this.panel1.Size = new System.Drawing.Size(602, 529);
             this.panel1.TabIndex = 14;
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(405, 466);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(178, 33);
+            this.btnEliminar.TabIndex = 16;
+            this.btnEliminar.Text = "Eliminar Imagen";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            // 
             // btnAltaPosterior
             // 
             this.btnAltaPosterior.Location = new System.Drawing.Point(336, 316);
@@ -237,14 +246,6 @@
             this.btnAltaAnterior.Text = "<";
             this.btnAltaAnterior.UseVisualStyleBackColor = true;
             this.btnAltaAnterior.Click += new System.EventHandler(this.btnAltaAnterior_Click);
-            // 
-            // txtListaImagenes
-            // 
-            this.txtListaImagenes.Location = new System.Drawing.Point(20, 362);
-            this.txtListaImagenes.Multiline = true;
-            this.txtListaImagenes.Name = "txtListaImagenes";
-            this.txtListaImagenes.Size = new System.Drawing.Size(563, 87);
-            this.txtListaImagenes.TabIndex = 14;
             // 
             // panel2
             // 
@@ -274,6 +275,7 @@
             // 
             // btnAgregarImagenURL
             // 
+            this.btnAgregarImagenURL.ForeColor = System.Drawing.Color.Black;
             this.btnAgregarImagenURL.Location = new System.Drawing.Point(274, 247);
             this.btnAgregarImagenURL.Name = "btnAgregarImagenURL";
             this.btnAgregarImagenURL.Size = new System.Drawing.Size(30, 28);
@@ -282,14 +284,13 @@
             this.btnAgregarImagenURL.UseVisualStyleBackColor = true;
             this.btnAgregarImagenURL.Click += new System.EventHandler(this.btnAgregarImagenURL_Click);
             // 
-            // btnEliminar
+            // txtListaImagenes
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(405, 466);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(178, 33);
-            this.btnEliminar.TabIndex = 16;
-            this.btnEliminar.Text = "Eliminar Imagen";
-            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.txtListaImagenes.Location = new System.Drawing.Point(20, 362);
+            this.txtListaImagenes.Multiline = true;
+            this.txtListaImagenes.Name = "txtListaImagenes";
+            this.txtListaImagenes.Size = new System.Drawing.Size(563, 87);
+            this.txtListaImagenes.TabIndex = 14;
             // 
             // frmAltaArticulo
             // 
@@ -333,9 +334,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnAgregarImagenURL;
-        private System.Windows.Forms.TextBox txtListaImagenes;
         private System.Windows.Forms.Button btnAltaPosterior;
         private System.Windows.Forms.Button btnAltaAnterior;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.TextBox txtListaImagenes;
     }
 }

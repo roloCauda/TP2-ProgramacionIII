@@ -73,30 +73,30 @@ namespace negocio
             }
         }
 
-        public void modificar(List<string> lista, Articulo articulo)
+        public void modificar(List<string> lista, int iDArticulo)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                //datos.setearConsulta("update IMAGENES set ImagenUrl=@imagenURL Where IdArticulo=@id");
-                //datos.setearParametro("@imagenURL", lista.ImagenURL);
-                //datos.setearParametro("@id", articulo.IdArticulo);
-
                 int tamLista = lista.Count;
 
                 for (int x = 0; x < tamLista; x++)
                 {
-                    datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@IdArticulo, @ImagenURL)");
-                    datos.limpiarParametros(datos);
-                    datos.setearParametro("@IdArticulo", articulo.IdArticulo);
-                    datos.setearParametro("@ImagenURL", lista[x]);
+                    datos.setearConsulta("select count (*) from IMAGENES where ImagenUrl=@imagenURL and IdArticulo=@idArticulo");
+                    datos.setearParametro("@imagenURL", lista[x]);
+                    datos.setearParametro("@idArticulo", iDArticulo);
+                    int cantidad = (int)datos.ejecutarEscalar();
 
-                    datos.ejecutarAccion();
+                    if (cantidad == 0) //No la encontro, entonces la agregamos
+                    {
+                        datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@idArticulo, @imagenURL)");
+                        datos.limpiarParametros(datos);
+                        datos.setearParametro("@imagenURL", lista[x]);
+                        datos.setearParametro("@idArticulo", iDArticulo);
+                        datos.ejecutarAccion();
+                    }
                 }
-
-
-                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {

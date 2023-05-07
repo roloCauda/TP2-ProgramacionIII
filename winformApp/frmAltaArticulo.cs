@@ -19,7 +19,7 @@ namespace winformApp
         private Articulo articulo = null;
         private List<Imagen> ListaImagenes = null;
         private List<string> ListaStringImagenes = new List<string>();
-        int IndiceImagen = -1;
+        private int IndiceImagen = -1;
 
         public frmAltaArticulo()
         {
@@ -164,7 +164,7 @@ namespace winformApp
                     //articulo.IdArticulo =
                     //nuevoIMG.ImagenURL = txtURLImagen.Text;
                     negocio.modificar(articulo);
-                    negocioIMG.modificar(ListaStringImagenes, articulo);
+                    negocioIMG.modificar(ListaStringImagenes, articulo.IdArticulo);
                     MessageBox.Show("Modificado exitosamente");
                 }
                 else
@@ -185,6 +185,7 @@ namespace winformApp
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            ListaStringImagenes.Clear();
             Close();
         }
 

@@ -59,6 +59,7 @@
             // 
             // dgvArticulo
             // 
+            this.dgvArticulo.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dgvArticulo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulo.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvArticulo.Location = new System.Drawing.Point(0, 78);
@@ -133,7 +134,7 @@
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(142, 26);
             this.btnAnterior.TabIndex = 16;
-            this.btnAnterior.Text = "Anterior";
+            this.btnAnterior.Text = "<";
             this.btnAnterior.UseVisualStyleBackColor = true;
             this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
             // 
@@ -144,7 +145,7 @@
             this.btnPosterior.Name = "btnPosterior";
             this.btnPosterior.Size = new System.Drawing.Size(142, 26);
             this.btnPosterior.TabIndex = 17;
-            this.btnPosterior.Text = "Posterior";
+            this.btnPosterior.Text = ">";
             this.btnPosterior.UseVisualStyleBackColor = true;
             this.btnPosterior.Click += new System.EventHandler(this.btnPosterior_Click);
             // 
