@@ -46,11 +46,12 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtURLImagen = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAltaPosterior = new System.Windows.Forms.Button();
+            this.btnAltaAnterior = new System.Windows.Forms.Button();
+            this.txtListaImagenes = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAgregarImagenURL = new System.Windows.Forms.Button();
-            this.txtListaImagenes = new System.Windows.Forms.TextBox();
-            this.btnAltaAnterior = new System.Windows.Forms.Button();
-            this.btnAltaPosterior = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloAlta)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -177,7 +178,7 @@
             // btnAceptar
             // 
             this.btnAceptar.ForeColor = System.Drawing.Color.Black;
-            this.btnAceptar.Location = new System.Drawing.Point(86, 466);
+            this.btnAceptar.Location = new System.Drawing.Point(135, 466);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(169, 33);
             this.btnAceptar.TabIndex = 7;
@@ -187,7 +188,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(61, 466);
+            this.btnCancelar.Location = new System.Drawing.Point(20, 466);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(169, 33);
             this.btnCancelar.TabIndex = 8;
@@ -205,16 +206,45 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Teal;
+            this.panel1.Controls.Add(this.btnEliminar);
             this.panel1.Controls.Add(this.btnAltaPosterior);
             this.panel1.Controls.Add(this.btnAltaAnterior);
             this.panel1.Controls.Add(this.txtListaImagenes);
             this.panel1.Controls.Add(this.btnCancelar);
             this.panel1.Controls.Add(this.pbxArticuloAlta);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(331, 0);
+            this.panel1.Location = new System.Drawing.Point(324, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(595, 529);
+            this.panel1.Size = new System.Drawing.Size(602, 529);
             this.panel1.TabIndex = 14;
+            // 
+            // btnAltaPosterior
+            // 
+            this.btnAltaPosterior.Location = new System.Drawing.Point(336, 316);
+            this.btnAltaPosterior.Name = "btnAltaPosterior";
+            this.btnAltaPosterior.Size = new System.Drawing.Size(46, 34);
+            this.btnAltaPosterior.TabIndex = 15;
+            this.btnAltaPosterior.Text = ">";
+            this.btnAltaPosterior.UseVisualStyleBackColor = true;
+            this.btnAltaPosterior.Click += new System.EventHandler(this.btnAltaPosterior_Click);
+            // 
+            // btnAltaAnterior
+            // 
+            this.btnAltaAnterior.Location = new System.Drawing.Point(212, 316);
+            this.btnAltaAnterior.Name = "btnAltaAnterior";
+            this.btnAltaAnterior.Size = new System.Drawing.Size(46, 34);
+            this.btnAltaAnterior.TabIndex = 15;
+            this.btnAltaAnterior.Text = "<";
+            this.btnAltaAnterior.UseVisualStyleBackColor = true;
+            this.btnAltaAnterior.Click += new System.EventHandler(this.btnAltaAnterior_Click);
+            // 
+            // txtListaImagenes
+            // 
+            this.txtListaImagenes.Location = new System.Drawing.Point(20, 362);
+            this.txtListaImagenes.Multiline = true;
+            this.txtListaImagenes.Name = "txtListaImagenes";
+            this.txtListaImagenes.Size = new System.Drawing.Size(563, 87);
+            this.txtListaImagenes.TabIndex = 14;
             // 
             // panel2
             // 
@@ -252,33 +282,14 @@
             this.btnAgregarImagenURL.UseVisualStyleBackColor = true;
             this.btnAgregarImagenURL.Click += new System.EventHandler(this.btnAgregarImagenURL_Click);
             // 
-            // txtListaImagenes
+            // btnEliminar
             // 
-            this.txtListaImagenes.Location = new System.Drawing.Point(20, 362);
-            this.txtListaImagenes.Multiline = true;
-            this.txtListaImagenes.Name = "txtListaImagenes";
-            this.txtListaImagenes.Size = new System.Drawing.Size(563, 87);
-            this.txtListaImagenes.TabIndex = 14;
-            // 
-            // btnAltaAnterior
-            // 
-            this.btnAltaAnterior.Location = new System.Drawing.Point(212, 316);
-            this.btnAltaAnterior.Name = "btnAltaAnterior";
-            this.btnAltaAnterior.Size = new System.Drawing.Size(46, 34);
-            this.btnAltaAnterior.TabIndex = 15;
-            this.btnAltaAnterior.Text = "<";
-            this.btnAltaAnterior.UseVisualStyleBackColor = true;
-            this.btnAltaAnterior.Click += new System.EventHandler(this.btnAltaAnterior_Click);
-            // 
-            // btnAltaPosterior
-            // 
-            this.btnAltaPosterior.Location = new System.Drawing.Point(336, 316);
-            this.btnAltaPosterior.Name = "btnAltaPosterior";
-            this.btnAltaPosterior.Size = new System.Drawing.Size(46, 34);
-            this.btnAltaPosterior.TabIndex = 15;
-            this.btnAltaPosterior.Text = ">";
-            this.btnAltaPosterior.UseVisualStyleBackColor = true;
-            this.btnAltaPosterior.Click += new System.EventHandler(this.btnAltaPosterior_Click);
+            this.btnEliminar.Location = new System.Drawing.Point(405, 466);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(178, 33);
+            this.btnEliminar.TabIndex = 16;
+            this.btnEliminar.Text = "Eliminar Imagen";
+            this.btnEliminar.UseVisualStyleBackColor = true;
             // 
             // frmAltaArticulo
             // 
@@ -325,5 +336,6 @@
         private System.Windows.Forms.TextBox txtListaImagenes;
         private System.Windows.Forms.Button btnAltaPosterior;
         private System.Windows.Forms.Button btnAltaAnterior;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }

@@ -73,15 +73,27 @@ namespace negocio
             }
         }
 
-        public void modificar(Imagen nuevoIMG, Articulo articulo)
+        public void modificar(List<string> lista, Articulo articulo)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("update IMAGENES set ImagenUrl=@imagenURL Where IdArticulo=@id");
-                datos.setearParametro("@imagenURL", nuevoIMG.ImagenURL);
-                datos.setearParametro("@id", articulo.IdArticulo);
+                //datos.setearConsulta("update IMAGENES set ImagenUrl=@imagenURL Where IdArticulo=@id");
+                //datos.setearParametro("@imagenURL", lista.ImagenURL);
+                //datos.setearParametro("@id", articulo.IdArticulo);
+
+                int tamLista = lista.Count;
+
+                for (int x = 0; x < tamLista; x++)
+                {
+                    datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@IdArticulo, @ImagenURL)");
+                    datos.limpiarParametros(datos);
+                    datos.setearParametro("@IdArticulo", articulo.IdArticulo);
+                    datos.setearParametro("@ImagenURL", lista[x]);
+
+                    datos.ejecutarAccion();
+                }
 
 
                 datos.ejecutarAccion();
