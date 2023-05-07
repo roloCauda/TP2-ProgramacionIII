@@ -41,7 +41,6 @@ namespace winformApp
             ListaImagenes = negocio.listar(IdArt);
 
             ListaStringImagenes = extraerStringsListaImagenes(ListaImagenes);
-            CargarListaEnTextBox(ListaStringImagenes);
 
             IndiceImagenBorrar = ListaStringImagenesBorrar.Count() - 1;
             IndiceImagen = ListaStringImagenes.Count() - 1;
@@ -49,11 +48,6 @@ namespace winformApp
             cargarImagen(ListaStringImagenes[0]);
 
             Text = "Modificar Artículo";
-        }
-
-        private void CargarListaEnTextBox(List<string> ListaStringImagenes)
-        {
-            txtListaImagenes.Text = String.Join(Environment.NewLine, ListaStringImagenes);
         }
 
         public List<string> extraerStringsListaImagenes(List<Imagen> listaImagenes)
@@ -76,7 +70,6 @@ namespace winformApp
         {
             if(txtURLImagen.Text != null)
             {
-                txtListaImagenes.AppendText(txtURLImagen.Text + Environment.NewLine);
                 ListaStringImagenes.Add(txtURLImagen.Text);
                 
                 if (IndiceImagen == -1)
@@ -207,22 +200,26 @@ namespace winformApp
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-
-            if (ListaStringImagenes.Count()>0)
+            try
             {
-                ListaStringImagenesBorrar.Add(ListaStringImagenes[0]);
+                if (ListaStringImagenes.Count()>0)
+                {
+                    ListaStringImagenesBorrar.Add(ListaStringImagenes[0]);
 
-                ListaStringImagenes.Remove(ListaStringImagenes[0]);
+                    ListaStringImagenes.Remove(ListaStringImagenes[0]);
 
-                IndiceImagen--;
+                    IndiceImagen--;
 
-                cargarImagen(ListaStringImagenes[0]);
+                    cargarImagen(ListaStringImagenes[0]);
+                }
+
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

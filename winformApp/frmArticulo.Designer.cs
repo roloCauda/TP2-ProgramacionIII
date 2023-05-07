@@ -113,6 +113,7 @@
             // 
             // lblFiltro
             // 
+            this.lblFiltro.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblFiltro.Location = new System.Drawing.Point(207, 34);
             this.lblFiltro.Name = "lblFiltro";
             this.lblFiltro.Size = new System.Drawing.Size(96, 22);
@@ -162,6 +163,7 @@
             // txtFiltroAvanzado
             // 
             this.txtFiltroAvanzado.AutoSize = true;
+            this.txtFiltroAvanzado.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtFiltroAvanzado.Location = new System.Drawing.Point(591, 39);
             this.txtFiltroAvanzado.Name = "txtFiltroAvanzado";
             this.txtFiltroAvanzado.Size = new System.Drawing.Size(39, 16);
@@ -180,6 +182,7 @@
             // lblCriterio
             // 
             this.lblCriterio.AutoSize = true;
+            this.lblCriterio.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblCriterio.Location = new System.Drawing.Point(332, 40);
             this.lblCriterio.Name = "lblCriterio";
             this.lblCriterio.Size = new System.Drawing.Size(52, 16);
@@ -188,6 +191,7 @@
             // 
             // btnLimpiarFiltro
             // 
+            this.btnLimpiarFiltro.ForeColor = System.Drawing.Color.Black;
             this.btnLimpiarFiltro.Location = new System.Drawing.Point(994, 28);
             this.btnLimpiarFiltro.Name = "btnLimpiarFiltro";
             this.btnLimpiarFiltro.Size = new System.Drawing.Size(143, 38);
@@ -199,6 +203,7 @@
             // lblCampo
             // 
             this.lblCampo.AutoSize = true;
+            this.lblCampo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblCampo.Location = new System.Drawing.Point(71, 40);
             this.lblCampo.Name = "lblCampo";
             this.lblCampo.Size = new System.Drawing.Size(54, 16);
@@ -207,6 +212,7 @@
             // 
             // btnFiltro
             // 
+            this.btnFiltro.ForeColor = System.Drawing.Color.Black;
             this.btnFiltro.Location = new System.Drawing.Point(870, 28);
             this.btnFiltro.Name = "btnFiltro";
             this.btnFiltro.Size = new System.Drawing.Size(97, 38);

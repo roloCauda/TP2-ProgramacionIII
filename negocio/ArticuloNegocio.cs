@@ -188,29 +188,6 @@ namespace negocio
                     if (!(datos.Lector["Descripcion"] is DBNull))
                         aux.Descripcion = (string)datos.Lector["Descripcion"];
 
-                    /*aux.IdMarca = new Marca();
-                    if (!(datos.Lector["marca"] is DBNull))
-                    {
-                        aux.IdMarca.IdMarca = (int)datos.Lector["IdMarca"];
-                        aux.IdMarca.Descripcion = (string)datos.Lector["marca"];
-                    }
-
-                    aux.IdCategoria = new Categoria();
-                    if (!(datos.Lector["Categoria"] is DBNull))
-                    {
-                        aux.IdCategoria.IdCategoria = (int)datos.Lector["IdCategoria"];
-                        aux.IdCategoria.Descripcion = (string)datos.Lector["Categoria"];
-                    }
-
-
-
-                    Imagen imagen = new Imagen();
-
-                    imagen.ImagenURL = datos.Lector.IsDBNull(datos.Lector.GetOrdinal("ImagenUrl")) ? null : (string)datos.Lector["ImagenUrl"];
-                    aux.ListaImagenes.Add(imagen);*/
-
-
-
                     if (!(datos.Lector["Precio"] is DBNull))
                         aux.Precio = (decimal)datos.Lector["Precio"];
 
