@@ -84,6 +84,7 @@ namespace negocio
                 for (int x = 0; x < tamLista; x++)
                 {
                     datos.setearConsulta("select count (*) from IMAGENES where ImagenUrl=@imagenURL and IdArticulo=@idArticulo");
+                    datos.limpiarParametros(datos);
                     datos.setearParametro("@imagenURL", lista[x]);
                     datos.setearParametro("@idArticulo", iDArticulo);
                     int cantidad = (int)datos.ejecutarEscalar();
@@ -96,6 +97,7 @@ namespace negocio
                         datos.setearParametro("@idArticulo", iDArticulo);
                         datos.ejecutarAccion();
                     }
+                    cantidad = 0;
                 }
             }
             catch (Exception ex)

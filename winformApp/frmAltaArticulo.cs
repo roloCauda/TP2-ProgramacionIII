@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using dominio;
@@ -20,6 +21,8 @@ namespace winformApp
         private List<Imagen> ListaImagenes = null;
         private List<string> ListaStringImagenes = new List<string>();
         private int IndiceImagen = -1;
+        private int IndiceImagenBorrar = -1;
+        private List<string> ListaStringImagenesBorrar = new List<string>();
 
         public frmAltaArticulo()
         {
@@ -201,5 +204,30 @@ namespace winformApp
             }
         }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+            if (ListaStringImagenes.Count()>0)
+            {
+                //if (IndiceImagenBorrar == -1)
+                //{
+                //    IndiceImagenBorrar = 0;
+                //}
+                //else
+                //{
+                //    IndiceImagenBorrar++;
+                //}
+
+                int hola = IndiceImagen;
+                int chau = IndiceImagenBorrar;
+                ListaStringImagenesBorrar.Add(ListaStringImagenes[0]);
+
+                ListaStringImagenes.Remove(ListaStringImagenes[0]);
+
+                IndiceImagen--;
+
+                cargarImagen(ListaStringImagenes[0]);
+            }
+        }
     }
 }
