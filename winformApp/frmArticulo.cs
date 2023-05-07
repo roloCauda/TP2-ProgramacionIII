@@ -71,7 +71,6 @@ namespace winformApp
         private void ocultarColumnas()
         {
             dgvArticulo.Columns["IdArticulo"].Visible = false;
-           // dgvArticulo.Columns["ImagenURL"].Visible = false;
         }
 
         private void dgvArticulo_SelectionChanged(object sender, EventArgs e)
@@ -112,7 +111,6 @@ namespace winformApp
                 if (IndiceImagen != indiceMin && IndiceImagen > 0)
                 {
                     IndiceImagen--;
-                    /*cargarImagen()*/
                     pbxArticulo.ImageLocation = negocio.listar(IdArt)[IndiceImagen].ImagenURL;
                 }
             }
@@ -131,7 +129,6 @@ namespace winformApp
                 if(IndiceImagen != indiceMax && IndiceImagen >= 0)
                 {
                     IndiceImagen++;
-                    /*cargarImagen()*/
                     pbxArticulo.ImageLocation = negocio.listar(IdArt)[IndiceImagen].ImagenURL;
                 } 
             }
@@ -206,8 +203,10 @@ namespace winformApp
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Articulo seleccionado;
+            int IdArt;
             seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
-            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
+            IdArt = seleccionado.IdArticulo;
+            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado, IdArt);
             modificar.ShowDialog();
             cargar();
         }
@@ -261,7 +260,7 @@ namespace winformApp
 
                 if (!(soloNumeros(txtFiltroAV.Text)))
                 {
-                    MessageBox.Show("Solo números para el campo Filtrar");
+                    MessageBox.Show("Solo números para el campo Filtro");
                     return true;
                 }
             }

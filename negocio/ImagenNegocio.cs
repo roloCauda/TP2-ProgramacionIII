@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using dominio;
@@ -22,8 +23,8 @@ namespace negocio
                 while (datos.Lector.Read())
                 {
                     Imagen aux = new Imagen();
-                    int v = (int)datos.Lector["Id"];
-                    aux.IdImagen = v;
+
+                    aux.IdImagen = (int)datos.Lector["Id"];
                     aux.IdArticulo = (int)datos.Lector["IdArticulo"];
                     aux.ImagenURL = (string)datos.Lector["ImagenUrl"];
 
@@ -43,19 +44,22 @@ namespace negocio
 
         }
 
-        public void agregar(Imagen nuevoIMG)
+        public void agregar(List<string> lista , int ID)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                //las comillas dobles definen las cadenas en c#, las comillas simples definen las canedas en SQLServer
-                //ver como pasarle el ID de articulo, es Identity
-                datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@IdArticulo, @ImagenURL)");
-                datos.setearParametro("@IdArticulo", nuevoIMG.IdArticulo);
-                datos.setearParametro("@ImagenURL", nuevoIMG.ImagenURL);
+                int tamLista = lista.Count;
 
-                datos.ejecutarAccion(); 
+                for(int x=0; x<tamLista; x++)
+                {
+                    datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@IdArticulo, @ImagenURL)");
+                    datos.setearParametro("@IdArticulo", ID);
+                    datos.setearParametro("@ImagenURL", lista[x]);
+
+                    datos.ejecutarAccion(); 
+                }
 
             }
             catch (Exception ex)

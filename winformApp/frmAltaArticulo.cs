@@ -10,29 +10,81 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using dominio;
 using negocio;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace winformApp
 {
     public partial class frmAltaArticulo : Form
     {
-        
         private Articulo articulo = null;
+        private List<Imagen> ListaImagenes = null;
+        private List<string> ListaStringImagenes = new List<string>();
+        int IndiceImagen = -1;
 
         public frmAltaArticulo()
         {
             InitializeComponent();
+            
 
-            Text = "Agregar Artículo";
+        Text = "Agregar Artículo";
 
         }
-        public frmAltaArticulo(Articulo articulo)
+        public frmAltaArticulo(Articulo articulo, int IdArt)
         {
             InitializeComponent();
+            ImagenNegocio negocio = new ImagenNegocio();
+
             this.articulo = articulo;
+            ListaImagenes = negocio.listar(IdArt);
+
+            CargarListaEnTextBox(ListaImagenes);
 
             Text = "Modificar Artículo";
         }
-    
+
+        private void btnAgregarImagenURL_Click(object sender, EventArgs e)
+        {
+            if(txtURLImagen.Text != null)
+            {
+                txtListaImagenes.AppendText(txtURLImagen.Text + Environment.NewLine);
+                ListaStringImagenes.Add(txtURLImagen.Text);
+                
+                if (IndiceImagen == -1)
+                { 
+                    IndiceImagen = 0;
+                }
+                else
+                {
+                    IndiceImagen++;
+                }
+                cargarImagen(ListaStringImagenes[IndiceImagen]);
+                txtURLImagen.Text = "";
+            }
+        }
+
+        private void CargarListaEnTextBox(List<Imagen> lista)
+        {
+            txtListaImagenes.Text = String.Join(Environment.NewLine, lista.Select(img => img.ImagenURL));
+        }
+
+        private void btnAltaAnterior_Click(object sender, EventArgs e)
+        {
+            if (IndiceImagen > 0)
+            {
+                IndiceImagen--;
+                cargarImagen(ListaStringImagenes[IndiceImagen]);
+            }
+        }
+
+        private void btnAltaPosterior_Click(object sender, EventArgs e)
+        {
+            if(IndiceImagen < ListaStringImagenes.Count - 1)
+            {
+                IndiceImagen++;
+                cargarImagen(ListaStringImagenes[IndiceImagen]);
+            }
+        }
+
         private void frmAltaArticulo_Load_1(object sender, EventArgs e)
         {
             MarcaNegocio marcaNegocio = new MarcaNegocio();
@@ -67,13 +119,13 @@ namespace winformApp
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Imagen nuevoIMG = new Imagen(); //creo e instancio a la Imagen
+           
             ArticuloNegocio negocio = new ArticuloNegocio(); //para conectar a la BD
             ImagenNegocio negocioIMG = new ImagenNegocio(); //para conectar a la BD
 
             try
             {
-                if(articulo == null)
+                if(articulo == null) //si crea
                 {
                     articulo = new Articulo();
                     Marca nuevaMarca = new Marca();
@@ -85,24 +137,21 @@ namespace winformApp
                 articulo.IdMarca = (Marca)cboMarca.SelectedItem; //trae el item seleccionado, pero hay que decirle de que tipo es
                 articulo.IdCategoria = (Categoria)cboCategoria.SelectedItem;
                 articulo.Precio = decimal.Parse(txtPrecio.Text);
-                nuevoIMG.ImagenURL = txtURLImagen.Text;
 
-                if(articulo.IdArticulo != 0)
+                if(articulo.IdArticulo != 0) //si modifica
                 {
                     //nuevoIMG.IdImagen = 0; si se modifica la imagen tengo que pasarle el ID de la imagen
                     //articulo.IdArticulo =
-                    nuevoIMG.ImagenURL = txtURLImagen.Text;
-                    negocioIMG.modificar(nuevoIMG, articulo);
-                    negocio.modificar(articulo);
-                    MessageBox.Show("Modificado exitosamente");
+                    //nuevoIMG.ImagenURL = txtURLImagen.Text;
+                    //negocioIMG.modificar(nuevoIMG, articulo);
+                    //negocio.modificar(articulo);
+                   //MessageBox.Show("Modificado exitosamente");
                 }
                 else
                 {
                     int nuevoId = negocio.agregar(articulo);
 
-                    nuevoIMG.IdArticulo = nuevoId;
-                    nuevoIMG.ImagenURL = txtURLImagen.Text;
-                    negocioIMG.agregar(nuevoIMG);
+                    negocioIMG.agregar(ListaStringImagenes, nuevoId);
                     MessageBox.Show("Agregado exitosamente");
                 }
 
@@ -131,9 +180,5 @@ namespace winformApp
             }
         }
 
-        private void txtURLImagen_Leave(object sender, EventArgs e)
-        {
-            cargarImagen(txtURLImagen.Text);
-        }
     }
 }
