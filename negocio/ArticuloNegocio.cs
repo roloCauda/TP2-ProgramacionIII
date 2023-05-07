@@ -18,7 +18,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, I.ImagenUrl, A.IdMarca, A.IdCategoria From ARTICULOS A, CATEGORIAS C, MARCAS M, IMAGENES I Where C.Id = A.IdCategoria And M.Id = A.IdMarca and I.IdArticulo = A.Id");
+                datos.setearConsulta("Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, A.IdMarca, A.IdCategoria From ARTICULOS A, CATEGORIAS C, MARCAS M Where C.Id = A.IdCategoria And M.Id = A.IdMarca");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -27,13 +27,9 @@ namespace negocio
 
                     aux.IdArticulo = (int)datos.Lector["Id"];
 
-                    //opcion 1 - validar que no sea NULL
-                    //GetOrdinal es para decirle que columna ver
-                    //niego si es nulo (busco que no sea nulo)
                     if (!(datos.Lector.IsDBNull(datos.Lector.GetOrdinal("Codigo"))))
                         aux.Codigo = (string)datos.Lector["Codigo"];
 
-                    //opcion 2 - validar que no sea NULL
                     if (!(datos.Lector["Nombre"] is DBNull))
                         aux.Nombre = (string)datos.Lector["Nombre"];
 
@@ -41,18 +37,18 @@ namespace negocio
                         aux.Descripcion = (string)datos.Lector["Descripcion"];
 
                     aux.IdMarca = new Marca();
-                    if (!(datos.Lector["Marca"] is DBNull))
+                    if (!(datos.Lector["marca"] is DBNull))
+                    {
                         aux.IdMarca.IdMarca = (int)datos.Lector["IdMarca"];
-                        aux.IdMarca.Descripcion = (string)datos.Lector["Marca"];
+                        aux.IdMarca.Descripcion = (string)datos.Lector["marca"];
+                    }
 
                     aux.IdCategoria = new Categoria();
                     if (!(datos.Lector["Categoria"] is DBNull))
+                    {
                         aux.IdCategoria.IdCategoria = (int)datos.Lector["IdCategoria"];
                         aux.IdCategoria.Descripcion = (string)datos.Lector["Categoria"];
-
-                    aux.ImagenURL = new Imagen();
-                    //validar que no se null
-                        aux.ImagenURL.ImagenURL = (string)datos.Lector["ImagenUrl"];
+                    }
 
                     if (!(datos.Lector["Precio"] is DBNull))
                         aux.Precio = (decimal)datos.Lector["Precio"];
@@ -179,26 +175,41 @@ namespace negocio
 
                     aux.IdArticulo = (int)datos.Lector["Id"];
 
+                    //opcion 1 - validar que no sea NULL
+                    //GetOrdinal es para decirle que columna ver
+                    //niego si es nulo (busco que no sea nulo)
                     if (!(datos.Lector.IsDBNull(datos.Lector.GetOrdinal("Codigo"))))
                         aux.Codigo = (string)datos.Lector["Codigo"];
 
+                    //opcion 2 - validar que no sea NULL
                     if (!(datos.Lector["Nombre"] is DBNull))
                         aux.Nombre = (string)datos.Lector["Nombre"];
 
                     if (!(datos.Lector["Descripcion"] is DBNull))
                         aux.Descripcion = (string)datos.Lector["Descripcion"];
 
-                    aux.IdMarca = new Marca();
-                    if (!(datos.Lector["Marca"] is DBNull))
-                        aux.IdMarca.Descripcion = (string)datos.Lector["Marca"];
+                    /*aux.IdMarca = new Marca();
+                    if (!(datos.Lector["marca"] is DBNull))
+                    {
+                        aux.IdMarca.IdMarca = (int)datos.Lector["IdMarca"];
+                        aux.IdMarca.Descripcion = (string)datos.Lector["marca"];
+                    }
 
                     aux.IdCategoria = new Categoria();
                     if (!(datos.Lector["Categoria"] is DBNull))
+                    {
+                        aux.IdCategoria.IdCategoria = (int)datos.Lector["IdCategoria"];
                         aux.IdCategoria.Descripcion = (string)datos.Lector["Categoria"];
+                    }
 
-                    aux.ImagenURL = new Imagen();
-                    if (!(datos.Lector["ImagenUrl"] is DBNull))
-                        aux.ImagenURL.ImagenURL = (string)datos.Lector["ImagenUrl"];
+
+
+                    Imagen imagen = new Imagen();
+
+                    imagen.ImagenURL = datos.Lector.IsDBNull(datos.Lector.GetOrdinal("ImagenUrl")) ? null : (string)datos.Lector["ImagenUrl"];
+                    aux.ListaImagenes.Add(imagen);*/
+
+
 
                     if (!(datos.Lector["Precio"] is DBNull))
                         aux.Precio = (decimal)datos.Lector["Precio"];
@@ -216,21 +227,14 @@ namespace negocio
         }
 
 
-        public void eliminar(int id)
+        /*public void eliminar(int id)
         {
-            try
-            {
-                AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("delete from ARTICULOS where id=@id");
-                datos.setearParametro("@id", id);
-                datos.ejecutarLectura();
 
-            }
-            catch (Exception ex)
-            {
+        }*/
 
-                throw;
-            }
-        }
+        /*public void eliminarLogico(int id)
+        {
+
+        }*/
     }
 }

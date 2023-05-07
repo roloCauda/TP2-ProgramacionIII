@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace dominio
 {
@@ -18,14 +19,13 @@ namespace dominio
         public Marca IdMarca { get; set; }
         public Categoria IdCategoria { get; set; }
 
-        //public List<Imagen> ListaImagenes { get; set; }
-        public Imagen ImagenURL { get; set; }
-
         public decimal Precio { get; set; }
 
         public override string ToString()
         {
             return Nombre;
         }
+
+       
     }
 }

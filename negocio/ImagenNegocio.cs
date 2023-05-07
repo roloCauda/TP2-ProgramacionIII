@@ -9,22 +9,23 @@ namespace negocio
 {
     public class ImagenNegocio
     {
-        
-        public List<Imagen> listar()
+
+        public List<Imagen> listar(int idArticulo)
         {
             List<Imagen> lista = new List<Imagen>();
             AccesoDatos datos = new AccesoDatos();
-
             try
             {
-                datos.setearConsulta("select Id, ImagenURL from IMAGENES");
+                datos.setearConsulta("select Id, IdArticulo, ImagenUrl from Imagenes where idArticulo = " + idArticulo);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Imagen aux = new Imagen();
-                    aux.IdImagen = (int)datos.Lector["Id"];
-                    aux.ImagenURL = (string)datos.Lector["ImagenURL"];
+                    int v = (int)datos.Lector["Id"];
+                    aux.IdImagen = v;
+                    aux.IdArticulo = (int)datos.Lector["IdArticulo"];
+                    aux.ImagenURL = (string)datos.Lector["ImagenUrl"];
 
                     lista.Add(aux);
                 }
@@ -39,6 +40,7 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
+
         }
 
         public void agregar(Imagen nuevoIMG)
@@ -53,7 +55,7 @@ namespace negocio
                 datos.setearParametro("@IdArticulo", nuevoIMG.IdArticulo);
                 datos.setearParametro("@ImagenURL", nuevoIMG.ImagenURL);
 
-                datos.ejecutarAccion();
+                datos.ejecutarAccion(); 
 
             }
             catch (Exception ex)

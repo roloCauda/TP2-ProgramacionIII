@@ -43,6 +43,8 @@
             this.cboCampo = new System.Windows.Forms.ComboBox();
             this.cboCriterio = new System.Windows.Forms.ComboBox();
             this.btnLimpiarFiltro = new System.Windows.Forms.Button();
+            this.btnAnterior = new System.Windows.Forms.Button();
+            this.btnPosterior = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.SuspendLayout();
@@ -98,7 +100,6 @@
             this.btnEliminar.TabIndex = 4;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // lblFiltro
             // 
@@ -190,11 +191,33 @@
             this.btnLimpiarFiltro.UseVisualStyleBackColor = true;
             this.btnLimpiarFiltro.Click += new System.EventHandler(this.btnLimpiarFiltro_Click);
             // 
+            // btnAnterior
+            // 
+            this.btnAnterior.Location = new System.Drawing.Point(928, 381);
+            this.btnAnterior.Name = "btnAnterior";
+            this.btnAnterior.Size = new System.Drawing.Size(142, 26);
+            this.btnAnterior.TabIndex = 16;
+            this.btnAnterior.Text = "Anterior";
+            this.btnAnterior.UseVisualStyleBackColor = true;
+            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
+            // 
+            // btnPosterior
+            // 
+            this.btnPosterior.Location = new System.Drawing.Point(1101, 381);
+            this.btnPosterior.Name = "btnPosterior";
+            this.btnPosterior.Size = new System.Drawing.Size(142, 26);
+            this.btnPosterior.TabIndex = 17;
+            this.btnPosterior.Text = "Posterior";
+            this.btnPosterior.UseVisualStyleBackColor = true;
+            this.btnPosterior.Click += new System.EventHandler(this.btnPosterior_Click);
+            // 
             // frmArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 500);
+            this.Controls.Add(this.btnPosterior);
+            this.Controls.Add(this.btnAnterior);
             this.Controls.Add(this.btnLimpiarFiltro);
             this.Controls.Add(this.cboCriterio);
             this.Controls.Add(this.cboCampo);
@@ -237,5 +260,7 @@
         private System.Windows.Forms.ComboBox cboCampo;
         private System.Windows.Forms.ComboBox cboCriterio;
         private System.Windows.Forms.Button btnLimpiarFiltro;
+        private System.Windows.Forms.Button btnAnterior;
+        private System.Windows.Forms.Button btnPosterior;
     }
 }

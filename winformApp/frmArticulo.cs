@@ -15,6 +15,7 @@ namespace winformApp
     public partial class frmArticulo : Form
     {
         private List<Articulo> ListaArticulos;
+        int IndiceImagen;
 
         public frmArticulo()
         {
@@ -23,6 +24,8 @@ namespace winformApp
 
         private void frmArticulo_Load(object sender, EventArgs e) //evento
         {
+            
+            
             try
             {
                 cargar();
@@ -30,8 +33,6 @@ namespace winformApp
                 cboCampo.Items.Add("Codigo");
                 cboCampo.Items.Add("Nombre");
                 cboCampo.Items.Add("Descripcion");
-                //cboCampo.Items.Add("Marca");
-                //cboCampo.Items.Add("Categoria");
                 cboCampo.Items.Add("Precio");
             }
             catch (Exception ex)
@@ -48,15 +49,25 @@ namespace winformApp
             cargar();
         }
 
-        private void cargarImagen(string imagen)
+        private void cargarImagen(List<Imagen> listaImagenes, int indiceImagen)
         {
-            try
+            if (listaImagenes.Count > 0)
             {
-                pbxArticulo.Load(imagen);
+                if (indiceImagen < 0)
+                {
+                    indiceImagen = listaImagenes.Count - 1;
+                }
+                else if (indiceImagen >= listaImagenes.Count)
+                {
+                    indiceImagen = 0;
+                }
+
+                string imagenURL = listaImagenes[indiceImagen].ImagenURL;
+                pbxArticulo.Load(imagenURL);
             }
-            catch (Exception ex)
+            else
             {
-                pbxArticulo.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+                pbxArticulo.Image = null;
             }
         }
 
@@ -66,10 +77,10 @@ namespace winformApp
 
             try
             {
-                ListaArticulos = negocio.listar(); //le cargo la lista que me trae de la BD de Articulos
-                dgvArticulo.DataSource = ListaArticulos; //le paso la lista a la grilla
+                ListaArticulos = negocio.listar();
+                dgvArticulo.DataSource = ListaArticulos;
                 ocultarColumnas();
-                cargarImagen(ListaArticulos[0].ImagenURL.ImagenURL);
+                /*rgarImagen(ListaArticulos[0].ListaImagenes, 0);*/
             }
             catch (Exception ex)
             {
@@ -80,15 +91,50 @@ namespace winformApp
         private void ocultarColumnas()
         {
             dgvArticulo.Columns["IdArticulo"].Visible = false;
-            dgvArticulo.Columns["ImagenURL"].Visible = false;
+           // dgvArticulo.Columns["ImagenURL"].Visible = false;
         }
 
         private void dgvArticulo_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvArticulo.CurrentRow != null)
             {
+                IndiceImagen = 0;
+
+                ImagenNegocio negocio = new ImagenNegocio();
+                
                 Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
-                cargarImagen(seleccionado.ImagenURL.ImagenURL);
+                int IdArt = seleccionado.IdArticulo;
+                List<Imagen> listaImagenes = negocio.listar(IdArt);
+                pbxArticulo.ImageLocation = listaImagenes[0].ImagenURL;
+                
+            }
+        }
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (dgvArticulo.CurrentRow != null)
+            {
+                /*Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+                seleccionado.IndiceImagenActual--;
+                cargarImagen(seleccionado.ListaImagenes, seleccionado.IndiceImagenActual);*/
+            }
+        }
+
+        private void btnPosterior_Click(object sender, EventArgs e)
+        {
+            if (dgvArticulo.CurrentRow != null)
+            {
+                ImagenNegocio negocio = new ImagenNegocio();
+
+                Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+                int IdArt = seleccionado.IdArticulo;
+                int indiceMax = negocio.listar(IdArt).Count - 1;
+
+                if(IndiceImagen != indiceMax && IndiceImagen >= 0)
+                {
+                    IndiceImagen++;
+                    /*cargarImagen()*/
+                    pbxArticulo.ImageLocation = negocio.listar(IdArt)[IndiceImagen].ImagenURL;
+                } 
             }
         }
 
@@ -166,24 +212,5 @@ namespace winformApp
             cargar();
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            Articulo seleccionado;
-            try
-            {
-                DialogResult respuesta = MessageBox.Show("Estás seguro?", "Eliminar Artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if(respuesta == DialogResult.Yes) {
-                    seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
-                    negocio.eliminar(seleccionado.IdArticulo);
-                    cargar();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw;
-            }
-        }
     }
 }

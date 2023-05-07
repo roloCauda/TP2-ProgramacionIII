@@ -51,9 +51,9 @@ namespace winformApp
                     txtCodigo.Text = articulo.Codigo;
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
-                    txtURLImagen.Text = articulo.ImagenURL.ToString();
+                    
                     txtPrecio.Text = articulo.Precio.ToString();
-                    cargarImagen(articulo.ImagenURL.ToString());
+                   
                     cboMarca.SelectedValue = articulo.IdMarca.IdMarca;
                     cboCategoria.SelectedValue = articulo.IdCategoria.IdCategoria;
 
