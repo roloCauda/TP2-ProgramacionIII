@@ -49,9 +49,9 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAltaPosterior = new System.Windows.Forms.Button();
             this.btnAltaAnterior = new System.Windows.Forms.Button();
+            this.txtListaImagenes = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAgregarImagenURL = new System.Windows.Forms.Button();
-            this.txtListaImagenes = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloAlta)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -217,6 +217,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(602, 529);
             this.panel1.TabIndex = 14;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnEliminar
             // 
@@ -247,6 +248,14 @@
             this.btnAltaAnterior.Text = "<";
             this.btnAltaAnterior.UseVisualStyleBackColor = true;
             this.btnAltaAnterior.Click += new System.EventHandler(this.btnAltaAnterior_Click);
+            // 
+            // txtListaImagenes
+            // 
+            this.txtListaImagenes.Location = new System.Drawing.Point(20, 362);
+            this.txtListaImagenes.Multiline = true;
+            this.txtListaImagenes.Name = "txtListaImagenes";
+            this.txtListaImagenes.Size = new System.Drawing.Size(563, 87);
+            this.txtListaImagenes.TabIndex = 14;
             // 
             // panel2
             // 
@@ -284,14 +293,6 @@
             this.btnAgregarImagenURL.Text = "+";
             this.btnAgregarImagenURL.UseVisualStyleBackColor = true;
             this.btnAgregarImagenURL.Click += new System.EventHandler(this.btnAgregarImagenURL_Click);
-            // 
-            // txtListaImagenes
-            // 
-            this.txtListaImagenes.Location = new System.Drawing.Point(20, 362);
-            this.txtListaImagenes.Multiline = true;
-            this.txtListaImagenes.Name = "txtListaImagenes";
-            this.txtListaImagenes.Size = new System.Drawing.Size(563, 87);
-            this.txtListaImagenes.TabIndex = 14;
             // 
             // frmAltaArticulo
             // 

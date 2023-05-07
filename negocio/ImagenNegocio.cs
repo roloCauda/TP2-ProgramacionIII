@@ -61,7 +61,6 @@ namespace negocio
 
                     datos.ejecutarAccion(); 
                 }
-
             }
             catch (Exception ex)
             {
@@ -73,7 +72,7 @@ namespace negocio
             }
         }
 
-        public void modificar(List<string> lista, int iDArticulo)
+        public void modificar(List<string> lista, List<string> listaBorrar , int iDArticulo)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -87,9 +86,8 @@ namespace negocio
                     datos.limpiarParametros(datos);
                     datos.setearParametro("@imagenURL", lista[x]);
                     datos.setearParametro("@idArticulo", iDArticulo);
-                    int cantidad = (int)datos.ejecutarEscalar();
 
-                    if (cantidad == 0) //No la encontro, entonces la agregamos
+                    if (DBNull.Value.Equals(datos.ejecutarEscalar())) //No la encontro, entonces la agregamos
                     {
                         datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@idArticulo, @imagenURL)");
                         datos.limpiarParametros(datos);
@@ -97,16 +95,32 @@ namespace negocio
                         datos.setearParametro("@idArticulo", iDArticulo);
                         datos.ejecutarAccion();
                     }
-                    cantidad = 0;
+                }
+
+                int tamListaBorrar = listaBorrar.Count;
+
+                for (int x = 0; x < tamListaBorrar; x++)
+                {
+                    datos.setearConsulta("select count (*) from IMAGENES where ImagenUrl=@imagenURL and IdArticulo=@idArticulo");
+                    datos.limpiarParametros(datos);
+                    datos.setearParametro("@imagenURL", listaBorrar[x]);
+                    datos.setearParametro("@idArticulo", iDArticulo);
+
+                    if (!(DBNull.Value.Equals(datos.ejecutarEscalar()))) //Si lo encontro, lo elimina
+                    {
+                        datos.setearConsulta("Delete FROM IMAGENES WHERE IdArticulo=@idArticulo AND ImagenURL=@imagenURL");
+                        datos.limpiarParametros(datos);
+                        datos.setearParametro("@imagenURL", listaBorrar[x]);
+                        datos.setearParametro("@idArticulo", iDArticulo);
+                        datos.ejecutarAccion();
+                    }
                 }
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally { datos.cerrarConexion();}
-
         }
     }
 }

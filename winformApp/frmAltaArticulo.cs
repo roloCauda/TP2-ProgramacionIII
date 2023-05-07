@@ -43,6 +43,9 @@ namespace winformApp
             ListaStringImagenes = extraerStringsListaImagenes(ListaImagenes);
             CargarListaEnTextBox(ListaStringImagenes);
 
+            IndiceImagenBorrar = ListaStringImagenesBorrar.Count() - 1;
+            IndiceImagen = ListaStringImagenes.Count() - 1;
+
             cargarImagen(ListaStringImagenes[0]);
 
             Text = "Modificar Artículo";
@@ -154,6 +157,7 @@ namespace winformApp
                     Marca nuevaMarca = new Marca();
                     Categoria nuevaCategoria = new Categoria();
                 }
+
                 articulo.Codigo = txtCodigo.Text; //si fuese de un tipo distinto a string, deberia castearlo, ej. int.Parse
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
@@ -163,11 +167,8 @@ namespace winformApp
 
                 if(articulo.IdArticulo != 0) //si modifica
                 {
-                    //nuevoIMG.IdImagen = 0; si se modifica la imagen tengo que pasarle el ID de la imagen
-                    //articulo.IdArticulo =
-                    //nuevoIMG.ImagenURL = txtURLImagen.Text;
                     negocio.modificar(articulo);
-                    negocioIMG.modificar(ListaStringImagenes, articulo.IdArticulo);
+                    negocioIMG.modificar(ListaStringImagenes, ListaStringImagenesBorrar, articulo.IdArticulo);
                     MessageBox.Show("Modificado exitosamente");
                 }
                 else
@@ -209,17 +210,6 @@ namespace winformApp
 
             if (ListaStringImagenes.Count()>0)
             {
-                //if (IndiceImagenBorrar == -1)
-                //{
-                //    IndiceImagenBorrar = 0;
-                //}
-                //else
-                //{
-                //    IndiceImagenBorrar++;
-                //}
-
-                int hola = IndiceImagen;
-                int chau = IndiceImagenBorrar;
                 ListaStringImagenesBorrar.Add(ListaStringImagenes[0]);
 
                 ListaStringImagenes.Remove(ListaStringImagenes[0]);
@@ -228,6 +218,11 @@ namespace winformApp
 
                 cargarImagen(ListaStringImagenes[0]);
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
