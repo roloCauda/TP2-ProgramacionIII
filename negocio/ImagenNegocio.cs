@@ -87,7 +87,7 @@ namespace negocio
                     datos.setearParametro("@imagenURL", lista[x]);
                     datos.setearParametro("@idArticulo", iDArticulo);
 
-                    if (DBNull.Value.Equals(datos.ejecutarEscalar())) //No la encontro, entonces la agregamos
+                    if (datos.ejecutarEscalar()==0) //No la encontro, entonces la agregamos
                     {
                         datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@idArticulo, @imagenURL)");
                         datos.limpiarParametros(datos);
@@ -106,7 +106,7 @@ namespace negocio
                     datos.setearParametro("@imagenURL", listaBorrar[x]);
                     datos.setearParametro("@idArticulo", iDArticulo);
 
-                    if (!(DBNull.Value.Equals(datos.ejecutarEscalar()))) //Si lo encontro, lo elimina
+                    if (datos.ejecutarEscalar()>0) //Si lo encontro, lo elimina
                     {
                         datos.setearConsulta("Delete FROM IMAGENES WHERE IdArticulo=@idArticulo AND ImagenURL=@imagenURL");
                         datos.limpiarParametros(datos);

@@ -45,7 +45,14 @@ namespace winformApp
             IndiceImagenBorrar = ListaStringImagenesBorrar.Count() - 1;
             IndiceImagen = ListaStringImagenes.Count() - 1;
 
-            cargarImagen(ListaStringImagenes[0]);
+            if (IndiceImagen > -1)
+            {
+                cargarImagen(ListaStringImagenes[0]);
+            }
+            else
+            {
+                pbxArticuloAlta.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
 
             Text = "Modificar Artículo";
         }

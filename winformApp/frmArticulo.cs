@@ -15,6 +15,7 @@ namespace winformApp
     public partial class frmArticulo : Form
     {
         private List<Articulo> ListaArticulos;
+        private List<string> ListaStringImagenes = new List<string>();
         int IndiceImagen;
 
         public frmArticulo()
@@ -24,8 +25,7 @@ namespace winformApp
 
         private void frmArticulo_Load(object sender, EventArgs e) //evento
         {
-            
-            
+                        
             try
             {
                 cargar();
@@ -60,7 +60,7 @@ namespace winformApp
                 ListaArticulos = negocio.listar();
                 dgvArticulo.DataSource = ListaArticulos;
                 ocultarColumnas();
-                /*cargarImagen(ListaArticulos[0].ListaImagenes, 0);*/
+
             }
             catch (Exception ex)
             {
@@ -87,7 +87,7 @@ namespace winformApp
 
                 try
                 {
-                    pbxArticulo.ImageLocation = listaImagenes[0].ImagenURL;
+                    cargarImagen(listaImagenes[0].ImagenURL);
                 }
                 catch (Exception)
                 {
@@ -100,37 +100,53 @@ namespace winformApp
         }
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-            if (dgvArticulo.CurrentRow != null)
+            try
             {
-                ImagenNegocio negocio = new ImagenNegocio();
-
-                Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
-                int IdArt = seleccionado.IdArticulo;
-                int indiceMin = negocio.listar(IdArt).Count + 1;
-
-                if (IndiceImagen != indiceMin && IndiceImagen > 0)
+                if (dgvArticulo.CurrentRow != null)
                 {
-                    IndiceImagen--;
-                    pbxArticulo.ImageLocation = negocio.listar(IdArt)[IndiceImagen].ImagenURL;
+                    ImagenNegocio negocio = new ImagenNegocio();
+
+                    Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+                    int IdArt = seleccionado.IdArticulo;
+
+                    if (IndiceImagen >0)
+                    {
+                        IndiceImagen--;
+                        cargarImagen(negocio.listar(IdArt)[IndiceImagen].ImagenURL);
+                    }
                 }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
             }
         }
 
         private void btnPosterior_Click(object sender, EventArgs e)
         {
-            if (dgvArticulo.CurrentRow != null)
+            try
             {
-                ImagenNegocio negocio = new ImagenNegocio();
-
-                Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
-                int IdArt = seleccionado.IdArticulo;
-                int indiceMax = negocio.listar(IdArt).Count - 1;
-
-                if(IndiceImagen != indiceMax && IndiceImagen >= 0)
+                if (dgvArticulo.CurrentRow != null)
                 {
-                    IndiceImagen++;
-                    pbxArticulo.ImageLocation = negocio.listar(IdArt)[IndiceImagen].ImagenURL;
-                } 
+                    ImagenNegocio negocio = new ImagenNegocio();
+
+                    Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+                    int IdArt = seleccionado.IdArticulo;
+
+                    if (IndiceImagen < negocio.listar(IdArt).Count - 1)
+                    {
+                        IndiceImagen++;
+                        cargarImagen(negocio.listar(IdArt)[IndiceImagen].ImagenURL);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -275,6 +291,18 @@ namespace winformApp
                 { return false; }
             }
             return true;
+        }
+
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbxArticulo.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+                pbxArticulo.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
         }
 
     }
