@@ -37,9 +37,33 @@ namespace winformApp
             this.articulo = articulo;
             ListaImagenes = negocio.listar(IdArt);
 
-            CargarListaEnTextBox(ListaImagenes);
+            ListaStringImagenes = extraerStringsListaImagenes(ListaImagenes);
+            CargarListaEnTextBox(ListaStringImagenes);
+
+            cargarImagen(ListaStringImagenes[0]);
 
             Text = "Modificar Artículo";
+        }
+
+        private void CargarListaEnTextBox(List<string> ListaStringImagenes)
+        {
+            txtListaImagenes.Text = String.Join(Environment.NewLine, ListaStringImagenes);
+        }
+
+        public List<string> extraerStringsListaImagenes(List<Imagen> listaImagenes)
+        {
+            List<string> lista = new List<string>();
+
+            for (int x = 0; x < listaImagenes.Count; x++)
+            {
+                string aux;
+
+                aux = listaImagenes[x].ImagenURL;
+
+                lista.Add(aux);
+            }
+
+            return lista;
         }
 
         private void btnAgregarImagenURL_Click(object sender, EventArgs e)
@@ -62,10 +86,6 @@ namespace winformApp
             }
         }
 
-        private void CargarListaEnTextBox(List<Imagen> lista)
-        {
-            txtListaImagenes.Text = String.Join(Environment.NewLine, lista.Select(img => img.ImagenURL));
-        }
 
         private void btnAltaAnterior_Click(object sender, EventArgs e)
         {
@@ -145,7 +165,7 @@ namespace winformApp
                     //nuevoIMG.ImagenURL = txtURLImagen.Text;
                     negocio.modificar(articulo);
                     negocioIMG.modificar(ListaStringImagenes, articulo);
-                   //MessageBox.Show("Modificado exitosamente");
+                    MessageBox.Show("Modificado exitosamente");
                 }
                 else
                 {
