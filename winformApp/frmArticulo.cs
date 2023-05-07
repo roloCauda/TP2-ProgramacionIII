@@ -113,9 +113,18 @@ namespace winformApp
         {
             if (dgvArticulo.CurrentRow != null)
             {
-                /*Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
-                seleccionado.IndiceImagenActual--;
-                cargarImagen(seleccionado.ListaImagenes, seleccionado.IndiceImagenActual);*/
+                ImagenNegocio negocio = new ImagenNegocio();
+
+                Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+                int IdArt = seleccionado.IdArticulo;
+                int indiceMin = negocio.listar(IdArt).Count + 1;
+
+                if (IndiceImagen != indiceMin && IndiceImagen > 0)
+                {
+                    IndiceImagen--;
+                    /*cargarImagen()*/
+                    pbxArticulo.ImageLocation = negocio.listar(IdArt)[IndiceImagen].ImagenURL;
+                }
             }
         }
 
@@ -212,5 +221,25 @@ namespace winformApp
             cargar();
         }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            Articulo seleccionado;
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("Estás seguro?", "Eliminar Artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+                    negocio.eliminar(seleccionado.IdArticulo);
+                    cargar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
+        }
     }
 }
