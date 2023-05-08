@@ -53,14 +53,11 @@
             this.btnAltaPosterior = new System.Windows.Forms.Button();
             this.btnAltaAnterior = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnArhivo = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnAgregarImagenURL = new System.Windows.Forms.Button();
-            this.lblImagenLocal = new System.Windows.Forms.Label();
-            this.txtImagenLocal = new System.Windows.Forms.TextBox();
-            this.btnAgregarImagenLocal = new System.Windows.Forms.Button();
-            this.btnArhivo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloAlta)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -69,111 +66,124 @@
             // lblCodArt
             // 
             this.lblCodArt.AutoSize = true;
-            this.lblCodArt.Location = new System.Drawing.Point(61, 52);
+            this.lblCodArt.Location = new System.Drawing.Point(56, 80);
             this.lblCodArt.Name = "lblCodArt";
             this.lblCodArt.Size = new System.Drawing.Size(54, 16);
             this.lblCodArt.TabIndex = 0;
             this.lblCodArt.Text = "Código:";
+            this.lblCodArt.Click += new System.EventHandler(this.lblCodArt_Click);
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(56, 90);
+            this.lblNombre.Location = new System.Drawing.Point(51, 118);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(59, 16);
             this.lblNombre.TabIndex = 1;
             this.lblNombre.Text = "Nombre:";
+            this.lblNombre.Click += new System.EventHandler(this.lblNombre_Click);
             // 
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(33, 133);
+            this.lblDescripcion.Location = new System.Drawing.Point(28, 161);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(82, 16);
             this.lblDescripcion.TabIndex = 2;
             this.lblDescripcion.Text = "Descripción:";
+            this.lblDescripcion.Click += new System.EventHandler(this.lblDescripcion_Click);
             // 
             // lblMarca
             // 
             this.lblMarca.AutoSize = true;
-            this.lblMarca.Location = new System.Drawing.Point(67, 173);
+            this.lblMarca.Location = new System.Drawing.Point(62, 201);
             this.lblMarca.Name = "lblMarca";
             this.lblMarca.Size = new System.Drawing.Size(48, 16);
             this.lblMarca.TabIndex = 3;
             this.lblMarca.Text = "Marca:";
+            this.lblMarca.Click += new System.EventHandler(this.lblMarca_Click);
             // 
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(46, 209);
+            this.lblCategoria.Location = new System.Drawing.Point(41, 237);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(69, 16);
             this.lblCategoria.TabIndex = 4;
             this.lblCategoria.Text = "Categoría:";
+            this.lblCategoria.Click += new System.EventHandler(this.lblCategoria_Click);
             // 
             // lblImagen
             // 
             this.lblImagen.AutoSize = true;
-            this.lblImagen.Location = new System.Drawing.Point(30, 250);
+            this.lblImagen.Location = new System.Drawing.Point(25, 278);
             this.lblImagen.Name = "lblImagen";
             this.lblImagen.Size = new System.Drawing.Size(85, 16);
             this.lblImagen.TabIndex = 5;
             this.lblImagen.Text = "URL Imagen:";
+            this.lblImagen.Click += new System.EventHandler(this.lblImagen_Click);
             // 
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(68, 326);
+            this.lblPrecio.Location = new System.Drawing.Point(62, 315);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(49, 16);
             this.lblPrecio.TabIndex = 6;
             this.lblPrecio.Text = "Precio:";
+            this.lblPrecio.Click += new System.EventHandler(this.lblPrecio_Click);
             // 
             // txtCodigo
             // 
-            this.txtCodigo.Location = new System.Drawing.Point(126, 49);
+            this.txtCodigo.Location = new System.Drawing.Point(121, 77);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(120, 22);
             this.txtCodigo.TabIndex = 0;
+            this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(126, 87);
+            this.txtNombre.Location = new System.Drawing.Point(121, 115);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(120, 22);
             this.txtNombre.TabIndex = 1;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(126, 130);
+            this.txtDescripcion.Location = new System.Drawing.Point(121, 158);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(121, 22);
             this.txtDescripcion.TabIndex = 2;
+            this.txtDescripcion.TextChanged += new System.EventHandler(this.txtDescripcion_TextChanged);
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(126, 323);
+            this.txtPrecio.Location = new System.Drawing.Point(120, 312);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(121, 22);
             this.txtPrecio.TabIndex = 6;
+            this.txtPrecio.TextChanged += new System.EventHandler(this.txtPrecio_TextChanged);
             // 
             // cboMarca
             // 
             this.cboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMarca.FormattingEnabled = true;
-            this.cboMarca.Location = new System.Drawing.Point(126, 170);
+            this.cboMarca.Location = new System.Drawing.Point(121, 198);
             this.cboMarca.Name = "cboMarca";
             this.cboMarca.Size = new System.Drawing.Size(121, 24);
             this.cboMarca.TabIndex = 3;
+            this.cboMarca.SelectedIndexChanged += new System.EventHandler(this.cboMarca_SelectedIndexChanged);
             // 
             // cboCategoria
             // 
             this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategoria.FormattingEnabled = true;
-            this.cboCategoria.Location = new System.Drawing.Point(126, 206);
+            this.cboCategoria.Location = new System.Drawing.Point(121, 234);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(121, 24);
             this.cboCategoria.TabIndex = 4;
+            this.cboCategoria.SelectedIndexChanged += new System.EventHandler(this.cboCategoria_SelectedIndexChanged);
             // 
             // pbxArticuloAlta
             // 
@@ -207,10 +217,11 @@
             // 
             // txtURLImagen
             // 
-            this.txtURLImagen.Location = new System.Drawing.Point(126, 247);
+            this.txtURLImagen.Location = new System.Drawing.Point(121, 275);
             this.txtURLImagen.Name = "txtURLImagen";
             this.txtURLImagen.Size = new System.Drawing.Size(120, 22);
             this.txtURLImagen.TabIndex = 5;
+            this.txtURLImagen.TextChanged += new System.EventHandler(this.txtURLImagen_TextChanged);
             // 
             // panel1
             // 
@@ -290,16 +301,13 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
             this.panel2.Controls.Add(this.btnArhivo);
-            this.panel2.Controls.Add(this.btnAgregarImagenLocal);
             this.panel2.Controls.Add(this.panel8);
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.btnAgregarImagenURL);
-            this.panel2.Controls.Add(this.txtImagenLocal);
             this.panel2.Controls.Add(this.txtURLImagen);
             this.panel2.Controls.Add(this.txtCodigo);
             this.panel2.Controls.Add(this.btnAceptar);
-            this.panel2.Controls.Add(this.lblImagenLocal);
             this.panel2.Controls.Add(this.lblPrecio);
             this.panel2.Controls.Add(this.lblImagen);
             this.panel2.Controls.Add(this.cboCategoria);
@@ -318,6 +326,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(325, 469);
             this.panel2.TabIndex = 15;
+            // 
+            // btnArhivo
+            // 
+            this.btnArhivo.ForeColor = System.Drawing.Color.Black;
+            this.btnArhivo.Location = new System.Drawing.Point(247, 272);
+            this.btnArhivo.Name = "btnArhivo";
+            this.btnArhivo.Size = new System.Drawing.Size(29, 28);
+            this.btnArhivo.TabIndex = 20;
+            this.btnArhivo.Text = "Archivo";
+            this.btnArhivo.UseVisualStyleBackColor = true;
+            this.btnArhivo.Click += new System.EventHandler(this.btnArhivo_Click);
             // 
             // panel8
             // 
@@ -349,51 +368,13 @@
             // btnAgregarImagenURL
             // 
             this.btnAgregarImagenURL.ForeColor = System.Drawing.Color.Black;
-            this.btnAgregarImagenURL.Location = new System.Drawing.Point(252, 244);
+            this.btnAgregarImagenURL.Location = new System.Drawing.Point(282, 272);
             this.btnAgregarImagenURL.Name = "btnAgregarImagenURL";
             this.btnAgregarImagenURL.Size = new System.Drawing.Size(30, 28);
             this.btnAgregarImagenURL.TabIndex = 14;
             this.btnAgregarImagenURL.Text = "+";
             this.btnAgregarImagenURL.UseVisualStyleBackColor = true;
             this.btnAgregarImagenURL.Click += new System.EventHandler(this.btnAgregarImagenURL_Click);
-            // 
-            // lblImagenLocal
-            // 
-            this.lblImagenLocal.AutoSize = true;
-            this.lblImagenLocal.Location = new System.Drawing.Point(30, 287);
-            this.lblImagenLocal.Name = "lblImagenLocal";
-            this.lblImagenLocal.Size = new System.Drawing.Size(91, 16);
-            this.lblImagenLocal.TabIndex = 5;
-            this.lblImagenLocal.Text = "Imagen Local:";
-            // 
-            // txtImagenLocal
-            // 
-            this.txtImagenLocal.Location = new System.Drawing.Point(126, 284);
-            this.txtImagenLocal.Name = "txtImagenLocal";
-            this.txtImagenLocal.Size = new System.Drawing.Size(120, 22);
-            this.txtImagenLocal.TabIndex = 5;
-            // 
-            // btnAgregarImagenLocal
-            // 
-            this.btnAgregarImagenLocal.ForeColor = System.Drawing.Color.Black;
-            this.btnAgregarImagenLocal.Location = new System.Drawing.Point(252, 287);
-            this.btnAgregarImagenLocal.Name = "btnAgregarImagenLocal";
-            this.btnAgregarImagenLocal.Size = new System.Drawing.Size(30, 25);
-            this.btnAgregarImagenLocal.TabIndex = 20;
-            this.btnAgregarImagenLocal.Text = "+";
-            this.btnAgregarImagenLocal.UseVisualStyleBackColor = true;
-            this.btnAgregarImagenLocal.Click += new System.EventHandler(this.btnAgregarImagenLocal_Click);
-            // 
-            // btnArhivo
-            // 
-            this.btnArhivo.ForeColor = System.Drawing.Color.Black;
-            this.btnArhivo.Location = new System.Drawing.Point(289, 287);
-            this.btnArhivo.Name = "btnArhivo";
-            this.btnArhivo.Size = new System.Drawing.Size(29, 25);
-            this.btnArhivo.TabIndex = 20;
-            this.btnArhivo.Text = "Archivo";
-            this.btnArhivo.UseVisualStyleBackColor = true;
-            this.btnArhivo.Click += new System.EventHandler(this.btnArhivo_Click);
             // 
             // frmAltaArticulo
             // 
@@ -446,9 +427,6 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox txtImagenLocal;
-        private System.Windows.Forms.Label lblImagenLocal;
         private System.Windows.Forms.Button btnArhivo;
-        private System.Windows.Forms.Button btnAgregarImagenLocal;
     }
 }

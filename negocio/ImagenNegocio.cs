@@ -5,12 +5,16 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using dominio;
+using System.IO;
+using System.Windows.Forms;
+using System.Configuration;
 
 namespace negocio
 {
     public class ImagenNegocio
     {
-
+        private OpenFileDialog archivo = null;
+        private AccesoDatos datos = null;
         public List<Imagen> listar(int idArticulo)
         {
             List<Imagen> lista = new List<Imagen>();
@@ -44,33 +48,52 @@ namespace negocio
 
         }
 
-        public void agregar(List<string> lista , int ID)
-        {
-            AccesoDatos datos = new AccesoDatos();
-
-            try
+            public void agregar(List<string> lista , int ID)
             {
-                int tamLista = lista.Count;
+                AccesoDatos datos = new AccesoDatos();
 
-                for(int x=0; x<tamLista; x++)
+                try
                 {
-                    datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@IdArticulo, @ImagenURL)");
-                    datos.limpiarParametros(datos);
-                    datos.setearParametro("@IdArticulo", ID);
-                    datos.setearParametro("@ImagenURL", lista[x]);
+                    int tamLista = lista.Count;
 
-                    datos.ejecutarAccion(); 
+                    for (int x = 0; x < tamLista; x++)
+                    {
+                        datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@IdArticulo, @ImagenURL)");
+                        datos.limpiarParametros(datos);
+                        datos.setearParametro("@IdArticulo", ID);
+
+                        
+                    datos = new AccesoDatos();
+                    //Guardo imagen si la levantó localmente
+                        if (!lista[x].ToUpper().Contains("HTTP"))
+                        {
+                        //string filename = Path.GetFileName(lista[x]); // nombre del archivo sin la ruta completa
+
+                            string filename = Path.GetFileName(lista[x]); // nombre del archivo sin la ruta completa, ej Kitty.png
+                            string carpetaImagenes = ConfigurationManager.AppSettings["Imagenes-Carpeta"];
+                            string destinationPath = Path.Combine(carpetaImagenes, filename);
+
+                            if (!File.Exists(destinationPath))
+                            {
+                                File.Copy(lista[x], destinationPath);
+                                lista[x] = destinationPath;
+                            }
+                        }
+
+                        datos.setearParametro("@ImagenURL", lista[x]);
+                        datos.ejecutarAccion();
+                }
+            
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    datos.cerrarConexion();
                 }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
 
         public void modificar(List<string> lista, List<string> listaBorrar , int iDArticulo)
         {

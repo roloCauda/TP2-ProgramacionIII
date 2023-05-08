@@ -6,7 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
-using System.IO;
+
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -96,37 +96,13 @@ namespace winformApp
             }
         }
 
-        private void btnAgregarImagenLocal_Click(object sender, EventArgs e)
-        {
-            if (txtImagenLocal.Text != null)
-            {
-                ListaStringImagenes.Add(txtImagenLocal.Text);
-
-                if (IndiceImagen == -1)
-                {
-                    IndiceImagen = 0;
-                }
-                else
-                {
-                    IndiceImagen++;
-                }
-                cargarImagen(ListaStringImagenes[IndiceImagen]);
-                txtImagenLocal.Text = "";
-            }
-
-            //Guardo imagen si la levantó localmente
-            //esto va en ImagenNegocio Agregar y Modificar
-            /*if (archivo != null && !(txtImagenLocal.Text.ToUpper().Contains("HTTP")))
-                File.Copy(archivo.FileName, ConfigurationManager.AppSettings["Carpeta-ImagenesTPWinForm"] + archivo.SafeFileName);*/
-        }
-
         private void btnArhivo_Click(object sender, EventArgs e)
         {
             archivo = new OpenFileDialog();
             archivo.Filter = "png|*.png";
             if (archivo.ShowDialog() == DialogResult.OK)
             {
-                txtImagenLocal.Text = archivo.FileName;
+                txtURLImagen.Text = archivo.FileName;
                 cargarImagen(archivo.FileName);
             }
         }
@@ -216,6 +192,7 @@ namespace winformApp
                     negocio.modificar(articulo);
                     negocioIMG.modificar(ListaStringImagenes, ListaStringImagenesBorrar, articulo.IdArticulo);
                     MessageBox.Show("Modificado exitosamente");
+                    ListaStringImagenes.Clear();
                 }
                 else
                 {
@@ -223,6 +200,7 @@ namespace winformApp
 
                     negocioIMG.agregar(ListaStringImagenes, nuevoId);
                     MessageBox.Show("Agregado exitosamente");
+                    ListaStringImagenes.Clear();
                 }
 
                 Close();
@@ -302,6 +280,76 @@ namespace winformApp
             {
                 return true;
             }
-        }        
+        }
+
+        private void txtURLImagen_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblPrecio_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblImagen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCategoria_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCodArt_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblMarca_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblNombre_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescripcion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPrecio_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblDescripcion_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
