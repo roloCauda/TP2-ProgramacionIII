@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -24,6 +26,7 @@ namespace winformApp
         private int IndiceImagen = -1;
         private int IndiceImagenBorrar = -1;
         private List<string> ListaStringImagenesBorrar = new List<string>();
+        private OpenFileDialog archivo = null;
 
         public frmAltaArticulo()
         {
@@ -93,6 +96,40 @@ namespace winformApp
             }
         }
 
+        private void btnAgregarImagenLocal_Click(object sender, EventArgs e)
+        {
+            if (txtImagenLocal.Text != null)
+            {
+                ListaStringImagenes.Add(txtImagenLocal.Text);
+
+                if (IndiceImagen == -1)
+                {
+                    IndiceImagen = 0;
+                }
+                else
+                {
+                    IndiceImagen++;
+                }
+                cargarImagen(ListaStringImagenes[IndiceImagen]);
+                txtImagenLocal.Text = "";
+            }
+
+            //Guardo imagen si la levantó localmente
+            //esto va en ImagenNegocio Agregar y Modificar
+            /*if (archivo != null && !(txtImagenLocal.Text.ToUpper().Contains("HTTP")))
+                File.Copy(archivo.FileName, ConfigurationManager.AppSettings["Carpeta-ImagenesTPWinForm"] + archivo.SafeFileName);*/
+        }
+
+        private void btnArhivo_Click(object sender, EventArgs e)
+        {
+            archivo = new OpenFileDialog();
+            archivo.Filter = "png|*.png";
+            if (archivo.ShowDialog() == DialogResult.OK)
+            {
+                txtImagenLocal.Text = archivo.FileName;
+                cargarImagen(archivo.FileName);
+            }
+        }
 
         private void btnAltaAnterior_Click(object sender, EventArgs e)
         {
@@ -167,23 +204,12 @@ namespace winformApp
                     articulo.Precio = decimal.Parse(txtPrecio.Text);
                     articulo.Nombre = txtNombre.Text;
                     articulo.Codigo = txtCodigo.Text;
-                    /*decimal precio;
-                    if (decimal.TryParse(txtPrecio.Text, out precio))
-                    {
-                        articulo.Precio = precio;
-                    }
-                    else
-                    {
-                        MessageBox.Show("1 - El valor ingresado no es válido.");
-                        return;
-                    }*/
                 }
                 else
                 {
                     MessageBox.Show("Completar campos obligatorios: Código, Nombre y Precio");
                     return;
                 }
-
 
                 if (articulo.IdArticulo != 0) //si modifica
                 {
@@ -212,7 +238,6 @@ namespace winformApp
             ListaStringImagenes.Clear();
             Close();
         }
-
         private void cargarImagen(string imagen)
         {
             try
@@ -252,7 +277,6 @@ namespace winformApp
             {
                 MessageBox.Show(ex.ToString());
             }
-
         }
         private bool soloNumeros(string texto)
         {
@@ -278,7 +302,6 @@ namespace winformApp
             {
                 return true;
             }
-        }
-
+        }        
     }
 }
