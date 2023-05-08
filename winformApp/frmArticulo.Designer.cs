@@ -241,7 +241,7 @@
             this.panel1.Controls.Add(this.cboCampo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.ForeColor = System.Drawing.Color.Teal;
-            this.panel1.Location = new System.Drawing.Point(0, 414);
+            this.panel1.Location = new System.Drawing.Point(0, 446);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1278, 86);
             this.panel1.TabIndex = 18;
@@ -256,7 +256,7 @@
             this.panel2.ForeColor = System.Drawing.Color.Cornsilk;
             this.panel2.Location = new System.Drawing.Point(870, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(408, 414);
+            this.panel2.Size = new System.Drawing.Size(408, 446);
             this.panel2.TabIndex = 19;
             // 
             // panel3
@@ -277,7 +277,8 @@
             this.panel4.Controls.Add(this.btnEliminar);
             this.panel4.Controls.Add(this.btnAgregar);
             this.panel4.Controls.Add(this.btnModificar);
-            this.panel4.Location = new System.Drawing.Point(0, 358);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 390);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(870, 56);
             this.panel4.TabIndex = 21;
@@ -286,12 +287,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1278, 500);
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(1278, 532);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvArticulo);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmArticulo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Catálogo";

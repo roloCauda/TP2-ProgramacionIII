@@ -51,6 +51,12 @@
             this.btnAltaAnterior = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAgregarImagenURL = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloAlta)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -167,9 +173,9 @@
             // 
             // pbxArticuloAlta
             // 
-            this.pbxArticuloAlta.Location = new System.Drawing.Point(11, 38);
+            this.pbxArticuloAlta.Location = new System.Drawing.Point(20, 49);
             this.pbxArticuloAlta.Name = "pbxArticuloAlta";
-            this.pbxArticuloAlta.Size = new System.Drawing.Size(328, 268);
+            this.pbxArticuloAlta.Size = new System.Drawing.Size(301, 257);
             this.pbxArticuloAlta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxArticuloAlta.TabIndex = 13;
             this.pbxArticuloAlta.TabStop = false;
@@ -205,6 +211,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Teal;
+            this.panel1.Controls.Add(this.panel7);
+            this.panel1.Controls.Add(this.panel6);
+            this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.btnEliminar);
             this.panel1.Controls.Add(this.btnAltaPosterior);
             this.panel1.Controls.Add(this.btnAltaAnterior);
@@ -248,7 +257,10 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Controls.Add(this.panel8);
+            this.panel2.Controls.Add(this.panel5);
+            this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.btnAgregarImagenURL);
             this.panel2.Controls.Add(this.txtURLImagen);
             this.panel2.Controls.Add(this.txtCodigo);
@@ -283,6 +295,60 @@
             this.btnAgregarImagenURL.UseVisualStyleBackColor = true;
             this.btnAgregarImagenURL.Click += new System.EventHandler(this.btnAgregarImagenURL_Click);
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(325, 10);
+            this.panel3.TabIndex = 15;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(351, 10);
+            this.panel4.TabIndex = 17;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(0, 459);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(325, 10);
+            this.panel5.TabIndex = 16;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel6.Location = new System.Drawing.Point(0, 459);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(351, 10);
+            this.panel6.TabIndex = 18;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel7.Location = new System.Drawing.Point(341, 10);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(10, 449);
+            this.panel7.TabIndex = 19;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel8.Location = new System.Drawing.Point(0, 10);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(10, 449);
+            this.panel8.TabIndex = 17;
+            // 
             // frmAltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -290,6 +356,7 @@
             this.ClientSize = new System.Drawing.Size(675, 469);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmAltaArticulo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAltaArticulo";
@@ -327,5 +394,11 @@
         private System.Windows.Forms.Button btnAltaPosterior;
         private System.Windows.Forms.Button btnAltaAnterior;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel3;
     }
 }
