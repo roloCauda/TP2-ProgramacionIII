@@ -159,14 +159,14 @@ namespace winformApp
                     Categoria nuevaCategoria = new Categoria();
                 }
 
-                articulo.Codigo = txtCodigo.Text; //si fuese de un tipo distinto a string, deberia castearlo, ej. int.Parse
-                articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
                 articulo.IdMarca = (Marca)cboMarca.SelectedItem; //trae el item seleccionado, pero hay que decirle de que tipo es
                 articulo.IdCategoria = (Categoria)cboCategoria.SelectedItem;
-                if (soloNumeros(txtPrecio.Text) && validarNulidad(txtPrecio.Text))
+                if (validarNulidad(txtCodigo.Text) && validarNulidad(txtNombre.Text) && soloNumeros(txtPrecio.Text) && validarNulidad(txtPrecio.Text))
                 {
                     articulo.Precio = decimal.Parse(txtPrecio.Text);
+                    articulo.Nombre = txtNombre.Text;
+                    articulo.Codigo = txtCodigo.Text;
                     /*decimal precio;
                     if (decimal.TryParse(txtPrecio.Text, out precio))
                     {
@@ -180,6 +180,7 @@ namespace winformApp
                 }
                 else
                 {
+                    MessageBox.Show("Completar campos obligatorios: Código, Nombre y Precio");
                     return;
                 }
 
