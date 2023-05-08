@@ -218,13 +218,24 @@ namespace winformApp
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Articulo seleccionado;
-            int IdArt;
-            seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
-            IdArt = seleccionado.IdArticulo;
-            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado, IdArt);
-            modificar.ShowDialog();
-            cargar();
+            try
+            {
+                if(validarSeleccionArticulo())
+                {
+                    Articulo seleccionado;
+                    int IdArt;
+                    seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+                    IdArt = seleccionado.IdArticulo;
+                    frmAltaArticulo modificar = new frmAltaArticulo(seleccionado, IdArt);
+                    modificar.ShowDialog();
+                    cargar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
         }
 
         private void btnLimpiarFiltro_Click(object sender, EventArgs e)
@@ -239,13 +250,17 @@ namespace winformApp
             Articulo seleccionado;
             try
             {
-                DialogResult respuesta = MessageBox.Show("Estás seguro?", "Eliminar Artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (respuesta == DialogResult.Yes)
+                if (validarSeleccionArticulo())
                 {
-                    seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
-                    negocio.eliminar(seleccionado.IdArticulo);
-                    cargar();
+                    DialogResult respuesta = MessageBox.Show("Estás seguro?", "Eliminar Artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+                        negocio.eliminar(seleccionado.IdArticulo);
+                        cargar();
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -302,6 +317,19 @@ namespace winformApp
             catch (Exception ex)
             {
                 pbxArticulo.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
+        }
+
+        private bool validarSeleccionArticulo()
+        {
+            if (dgvArticulo.CurrentRow != null)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Por favor seleccionar artículo");
+                return false;
             }
         }
 
