@@ -53,7 +53,6 @@
             this.btnAltaPosterior = new System.Windows.Forms.Button();
             this.btnAltaAnterior = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnArhivo = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -71,7 +70,7 @@
             this.lblCodArt.Size = new System.Drawing.Size(54, 16);
             this.lblCodArt.TabIndex = 0;
             this.lblCodArt.Text = "Código:";
-            this.lblCodArt.Click += new System.EventHandler(this.lblCodArt_Click);
+
             // 
             // lblNombre
             // 
@@ -81,7 +80,7 @@
             this.lblNombre.Size = new System.Drawing.Size(59, 16);
             this.lblNombre.TabIndex = 1;
             this.lblNombre.Text = "Nombre:";
-            this.lblNombre.Click += new System.EventHandler(this.lblNombre_Click);
+
             // 
             // lblDescripcion
             // 
@@ -91,7 +90,7 @@
             this.lblDescripcion.Size = new System.Drawing.Size(82, 16);
             this.lblDescripcion.TabIndex = 2;
             this.lblDescripcion.Text = "Descripción:";
-            this.lblDescripcion.Click += new System.EventHandler(this.lblDescripcion_Click);
+
             // 
             // lblMarca
             // 
@@ -101,7 +100,7 @@
             this.lblMarca.Size = new System.Drawing.Size(48, 16);
             this.lblMarca.TabIndex = 3;
             this.lblMarca.Text = "Marca:";
-            this.lblMarca.Click += new System.EventHandler(this.lblMarca_Click);
+
             // 
             // lblCategoria
             // 
@@ -111,7 +110,7 @@
             this.lblCategoria.Size = new System.Drawing.Size(69, 16);
             this.lblCategoria.TabIndex = 4;
             this.lblCategoria.Text = "Categoría:";
-            this.lblCategoria.Click += new System.EventHandler(this.lblCategoria_Click);
+
             // 
             // lblImagen
             // 
@@ -121,7 +120,7 @@
             this.lblImagen.Size = new System.Drawing.Size(85, 16);
             this.lblImagen.TabIndex = 5;
             this.lblImagen.Text = "URL Imagen:";
-            this.lblImagen.Click += new System.EventHandler(this.lblImagen_Click);
+
             // 
             // lblPrecio
             // 
@@ -131,7 +130,7 @@
             this.lblPrecio.Size = new System.Drawing.Size(49, 16);
             this.lblPrecio.TabIndex = 6;
             this.lblPrecio.Text = "Precio:";
-            this.lblPrecio.Click += new System.EventHandler(this.lblPrecio_Click);
+
             // 
             // txtCodigo
             // 
@@ -139,7 +138,7 @@
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(120, 22);
             this.txtCodigo.TabIndex = 0;
-            this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
+
             // 
             // txtNombre
             // 
@@ -147,7 +146,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(120, 22);
             this.txtNombre.TabIndex = 1;
-            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
+
             // 
             // txtDescripcion
             // 
@@ -155,7 +154,7 @@
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(121, 22);
             this.txtDescripcion.TabIndex = 2;
-            this.txtDescripcion.TextChanged += new System.EventHandler(this.txtDescripcion_TextChanged);
+
             // 
             // txtPrecio
             // 
@@ -163,7 +162,7 @@
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(121, 22);
             this.txtPrecio.TabIndex = 6;
-            this.txtPrecio.TextChanged += new System.EventHandler(this.txtPrecio_TextChanged);
+
             // 
             // cboMarca
             // 
@@ -173,7 +172,7 @@
             this.cboMarca.Name = "cboMarca";
             this.cboMarca.Size = new System.Drawing.Size(121, 24);
             this.cboMarca.TabIndex = 3;
-            this.cboMarca.SelectedIndexChanged += new System.EventHandler(this.cboMarca_SelectedIndexChanged);
+
             // 
             // cboCategoria
             // 
@@ -183,7 +182,7 @@
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(121, 24);
             this.cboCategoria.TabIndex = 4;
-            this.cboCategoria.SelectedIndexChanged += new System.EventHandler(this.cboCategoria_SelectedIndexChanged);
+
             // 
             // pbxArticuloAlta
             // 
@@ -221,7 +220,7 @@
             this.txtURLImagen.Name = "txtURLImagen";
             this.txtURLImagen.Size = new System.Drawing.Size(120, 22);
             this.txtURLImagen.TabIndex = 5;
-            this.txtURLImagen.TextChanged += new System.EventHandler(this.txtURLImagen_TextChanged);
+
             // 
             // panel1
             // 
@@ -300,7 +299,6 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
-            this.panel2.Controls.Add(this.btnArhivo);
             this.panel2.Controls.Add(this.panel8);
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel3);
@@ -326,17 +324,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(325, 469);
             this.panel2.TabIndex = 15;
-            // 
-            // btnArhivo
-            // 
-            this.btnArhivo.ForeColor = System.Drawing.Color.Black;
-            this.btnArhivo.Location = new System.Drawing.Point(247, 272);
-            this.btnArhivo.Name = "btnArhivo";
-            this.btnArhivo.Size = new System.Drawing.Size(29, 28);
-            this.btnArhivo.TabIndex = 20;
-            this.btnArhivo.Text = "Archivo";
-            this.btnArhivo.UseVisualStyleBackColor = true;
-            this.btnArhivo.Click += new System.EventHandler(this.btnArhivo_Click);
             // 
             // panel8
             // 
@@ -427,6 +414,5 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnArhivo;
     }
 }

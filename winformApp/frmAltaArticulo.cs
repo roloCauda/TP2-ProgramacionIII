@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
-
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -15,6 +13,7 @@ using System.Windows.Forms;
 using dominio;
 using negocio;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 namespace winformApp
 {
@@ -26,14 +25,13 @@ namespace winformApp
         private int IndiceImagen = -1;
         private int IndiceImagenBorrar = -1;
         private List<string> ListaStringImagenesBorrar = new List<string>();
-        private OpenFileDialog archivo = null;
 
         public frmAltaArticulo()
         {
             InitializeComponent();
-            
 
-        Text = "Agregar Artículo";
+
+            Text = "Agregar Artículo";
 
         }
         public frmAltaArticulo(Articulo articulo, int IdArt)
@@ -79,12 +77,12 @@ namespace winformApp
 
         private void btnAgregarImagenURL_Click(object sender, EventArgs e)
         {
-            if(txtURLImagen.Text != null)
+            if (txtURLImagen.Text != null)
             {
                 ListaStringImagenes.Add(txtURLImagen.Text);
-                
+
                 if (IndiceImagen == -1)
-                { 
+                {
                     IndiceImagen = 0;
                 }
                 else
@@ -96,16 +94,6 @@ namespace winformApp
             }
         }
 
-        private void btnArhivo_Click(object sender, EventArgs e)
-        {
-            archivo = new OpenFileDialog();
-            archivo.Filter = "png|*.png";
-            if (archivo.ShowDialog() == DialogResult.OK)
-            {
-                txtURLImagen.Text = archivo.FileName;
-                cargarImagen(archivo.FileName);
-            }
-        }
 
         private void btnAltaAnterior_Click(object sender, EventArgs e)
         {
@@ -118,7 +106,7 @@ namespace winformApp
 
         private void btnAltaPosterior_Click(object sender, EventArgs e)
         {
-            if(IndiceImagen < ListaStringImagenes.Count - 1)
+            if (IndiceImagen < ListaStringImagenes.Count - 1)
             {
                 IndiceImagen++;
                 cargarImagen(ListaStringImagenes[IndiceImagen]);
@@ -139,13 +127,14 @@ namespace winformApp
                 cboCategoria.ValueMember = "IdCategoria";
                 cboCategoria.DisplayMember = "Descripcion";
 
-                if (articulo != null){
+                if (articulo != null)
+                {
                     txtCodigo.Text = articulo.Codigo;
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
-                    
+
                     txtPrecio.Text = articulo.Precio.ToString();
-                   
+
                     cboMarca.SelectedValue = articulo.IdMarca.IdMarca;
                     cboCategoria.SelectedValue = articulo.IdCategoria.IdCategoria;
 
@@ -159,13 +148,13 @@ namespace winformApp
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-           
+
             ArticuloNegocio negocio = new ArticuloNegocio(); //para conectar a la BD
             ImagenNegocio negocioIMG = new ImagenNegocio(); //para conectar a la BD
 
             try
             {
-                if(articulo == null) //si crea
+                if (articulo == null) //si crea
                 {
                     articulo = new Articulo();
                     Marca nuevaMarca = new Marca();
@@ -180,6 +169,16 @@ namespace winformApp
                     articulo.Precio = decimal.Parse(txtPrecio.Text);
                     articulo.Nombre = txtNombre.Text;
                     articulo.Codigo = txtCodigo.Text;
+                    /*decimal precio;
+                    if (decimal.TryParse(txtPrecio.Text, out precio))
+                    {
+                        articulo.Precio = precio;
+                    }
+                    else
+                    {
+                        MessageBox.Show("1 - El valor ingresado no es válido.");
+                        return;
+                    }*/
                 }
                 else
                 {
@@ -187,12 +186,12 @@ namespace winformApp
                     return;
                 }
 
+
                 if (articulo.IdArticulo != 0) //si modifica
                 {
                     negocio.modificar(articulo);
                     negocioIMG.modificar(ListaStringImagenes, ListaStringImagenesBorrar, articulo.IdArticulo);
                     MessageBox.Show("Modificado exitosamente");
-                    ListaStringImagenes.Clear();
                 }
                 else
                 {
@@ -200,7 +199,6 @@ namespace winformApp
 
                     negocioIMG.agregar(ListaStringImagenes, nuevoId);
                     MessageBox.Show("Agregado exitosamente");
-                    ListaStringImagenes.Clear();
                 }
 
                 Close();
@@ -216,6 +214,7 @@ namespace winformApp
             ListaStringImagenes.Clear();
             Close();
         }
+
         private void cargarImagen(string imagen)
         {
             try
@@ -232,7 +231,7 @@ namespace winformApp
         {
             try
             {
-                if (ListaStringImagenes.Count()>0)
+                if (ListaStringImagenes.Count() > 0)
                 {
                     ListaStringImagenesBorrar.Add(ListaStringImagenes[IndiceImagen]);
 
@@ -255,6 +254,7 @@ namespace winformApp
             {
                 MessageBox.Show(ex.ToString());
             }
+
         }
         private bool soloNumeros(string texto)
         {
@@ -282,74 +282,5 @@ namespace winformApp
             }
         }
 
-        private void txtURLImagen_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtCodigo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblPrecio_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblImagen_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cboCategoria_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblCategoria_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblCodArt_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtNombre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cboMarca_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblMarca_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblNombre_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDescripcion_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtPrecio_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblDescripcion_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
