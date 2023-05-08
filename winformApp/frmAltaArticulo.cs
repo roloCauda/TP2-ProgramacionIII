@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -163,9 +164,27 @@ namespace winformApp
                 articulo.Descripcion = txtDescripcion.Text;
                 articulo.IdMarca = (Marca)cboMarca.SelectedItem; //trae el item seleccionado, pero hay que decirle de que tipo es
                 articulo.IdCategoria = (Categoria)cboCategoria.SelectedItem;
-                articulo.Precio = decimal.Parse(txtPrecio.Text);
+                if (soloNumeros(txtPrecio.Text) && validarNulidad(txtPrecio.Text))
+                {
+                    articulo.Precio = decimal.Parse(txtPrecio.Text);
+                    /*decimal precio;
+                    if (decimal.TryParse(txtPrecio.Text, out precio))
+                    {
+                        articulo.Precio = precio;
+                    }
+                    else
+                    {
+                        MessageBox.Show("1 - El valor ingresado no es válido.");
+                        return;
+                    }*/
+                }
+                else
+                {
+                    return;
+                }
 
-                if(articulo.IdArticulo != 0) //si modifica
+
+                if (articulo.IdArticulo != 0) //si modifica
                 {
                     negocio.modificar(articulo);
                     negocioIMG.modificar(ListaStringImagenes, ListaStringImagenesBorrar, articulo.IdArticulo);
@@ -233,6 +252,31 @@ namespace winformApp
                 MessageBox.Show(ex.ToString());
             }
 
+        }
+        private bool soloNumeros(string texto)
+        {
+            foreach (char caracter in texto)
+            {
+                if (!(char.IsNumber(caracter) || caracter == ','))
+                {
+                    MessageBox.Show("Por favor ingresar un número válido con coma");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool validarNulidad(string texto)
+        {
+            if (string.IsNullOrEmpty(texto))
+            {
+                MessageBox.Show("No ingresar campos nulos");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
     }
