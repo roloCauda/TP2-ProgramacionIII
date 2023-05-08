@@ -248,6 +248,7 @@ namespace winformApp
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             Articulo seleccionado;
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
             try
             {
                 if (validarSeleccionArticulo())
@@ -257,6 +258,7 @@ namespace winformApp
                     {
                         seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
                         negocio.eliminar(seleccionado.IdArticulo);
+                        imagenNegocio.eliminar(seleccionado.IdArticulo);
                         cargar();
                     }
                 }

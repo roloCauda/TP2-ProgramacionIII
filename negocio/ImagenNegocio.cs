@@ -122,5 +122,22 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); }
         }
+
+        public void eliminar(int idArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Delete FROM IMAGENES WHERE IdArticulo=@idArticulo");
+                datos.setearParametro("@idArticulo", idArticulo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }
